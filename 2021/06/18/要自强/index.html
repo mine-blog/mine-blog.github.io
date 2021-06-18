@@ -4,7 +4,7 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="try best">
+    <meta name="keywords" content="要自强, try best">
     <meta name="description" content="兴趣所致，希望在生活中有无尽的快乐！">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -27,7 +27,7 @@
 </script>
 
 
-    <title>BURAN</title>
+    <title>要自强 | BURAN</title>
     <link rel="icon" type="image/png" href="../../../../favicon.png">
 
     <link rel="stylesheet" type="text/css" href="../../../../libs/awesome/css/all.css">
@@ -277,12 +277,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../medias/featureimages/0.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../medias/featureimages/17.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title"></h1>
+                    <h1 class="description center-align post-title">要自强</h1>
                 </div>
             </div>
         </div>
@@ -424,14 +424,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    733
+                    0
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    1 分
                 </div>
                 
 
@@ -454,77 +454,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="Linux系统初次见面"><a href="#Linux系统初次见面" class="headerlink" title="Linux系统初次见面"></a>Linux系统初次见面</h2><hr>
-<p>虽然说自己也有或多或少接触Linux，但要真正做到一个靠思维和记忆敲打代码的程序员还是不太容易，那就熟能生巧，或者说是要自己雨哦时间就把一些事情或者知识记录下来这样的话，就能慢慢看到自己进步的轨迹了。</p>
-<hr>
-<h3 id="Linux的一些小的文件目录shell操作"><a href="#Linux的一些小的文件目录shell操作" class="headerlink" title="Linux的一些小的文件目录shell操作"></a>Linux的一些小的文件目录shell操作</h3><p>可以使用tab键进行shell提醒</p>
-<p>查看当前路径，显示当前目录名称</p>
-<ul>
-<li>pwd</li>
-</ul>
-<p>跳转到不同的路径</p>
-<ul>
-<li>cd</li>
-</ul>
-<p>更改目录到先前的额工作目录</p>
-<blockquote>
-<p>一些文件的重要规则：</p>
-</blockquote>
-<p>Important Facts About Filenames</p>
-<p>Filenames that begin with a period character are hidden. This only means that ls will not list them unless you say ls -a. When your account was created, several hidden files were placed in your home directory to configure things for your account. Later on we will take a closer look at some of these files to see how you can customize your environment. In addition, some applications place their configuration and settings files in your home directory as hidden files.</p>
-<p>Filenames and commands in Linux, like Unix, are case sensitive. The filenames “File1” and “file1” refer to different files.</p>
-<p>Linux has no concept of a “file extension” like some other operating systems. You may name files any way you like. The contents and/or purpose of a file is determined by other means. Although Unix-like operating system don’t use file extensions to determine the contents/purpose of files, some application programs do.</p>
-<p>Though Linux supports long filenames which may contain embedded spaces and punctuation characters, limit the punctuation characters in the names of files you create to period, dash, and underscore. Most importantly, do not embed spaces in filenames. If you want to represent spaces between words in a filename, use underscore characters. You will thank yourself later.</p>
-<ul>
-<li>cd -</li>
-</ul>
-<p>新建文件夹</p>
-<ul>
-<li>mkdir</li>
-</ul>
-<p>列出目录内容，其中注意的是可以又其他的参数，较为常用的是ls -l以列表的形式列出来。<br>这里应该注意的是ls可以后跟许多种参数，也就是按照不同的形式进行输出。<br>查找的时候可以借鉴<a href="http://billie66.github.io/TLCL/book/chap04.html">这本书</a></p>
-<ul>
-<li>ls</li>
-</ul>
-<p>这里又参考一些资料是这样的，参数的形式表示：</p>
-<p>Most commands use options consisting of a single character preceded by a dash, for example, “-l”, but many commands, including those from the GNU Project, also support long options, consisting of a word preceded by two dashes. Also, many commands allow multiple short options to be strung together. In this example, the ls command is given two options, the “l” option to produce long format output, and the “t” option to sort the result by the file’s modification time.</p>
-<p>加上长字符时我们使用两个短横线。例如  –reverse表示反转顺序</p>
-<p>移动文件操作，更改名称</p>
-<ul>
-<li>mv</li>
-</ul>
-<p>打开文本文件</p>
-<ul>
-<li>cat</li>
-</ul>
-<p>粘贴至文件</p>
-<ul>
-<li>cp</li>
-</ul>
-<p>删除文件（强制删除）</p>
-<ul>
-<li>rm -r(f)</li>
-</ul>
-<p>浏览文件内容</p>
-<ul>
-<li>less</li>
-</ul>
-<p>确定文件类型</p>
-<p>less的一些简单参数传递是这样的</p>
-<p>Command    Action</p>
-<p>Page UP or b    Scroll back one page</p>
-<p>Page Down or space    Scroll forward one page</p>
-<p>UP Arrow    Scroll Up one line</p>
-<p>Down Arrow    Scrow Down one line</p>
-<p>G    Move to the end of the text file</p>
-<p>1G or g    Move to the beginning of the text file</p>
-<p>/charaters    Search forward for the next occurrence of characters</p>
-<p>n    Search forward for the next occurrence of the previous search</p>
-<p>h    Display help screen</p>
-<p>q    Quit less</p>
-<ul>
-<li>file</li>
-</ul>
+                <hr>
 
                 
             </div>
@@ -583,13 +513,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="../2020-06-18%E5%B0%8F%E9%9B%B7%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%9E%E9%AA%8C3/">
+                <a href="../%E8%A6%81%E8%87%AA%E5%BC%BA-md/">
                     <div class="card-image">
                         
                         
-                        <img src="../../../../medias/featureimages/0.jpg" class="responsive-img" alt="">
+                        <img src="../../../../medias/featureimages/12.jpg" class="responsive-img" alt="要自强.md">
                         
-                        <span class="card-title"></span>
+                        <span class="card-title">要自强.md</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -604,11 +534,23 @@
                         </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            buran
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="../../../../categories/%E7%94%9F%E6%B4%BB/" class="post-category">
+                                    生活
+                                </a>
+                            
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="../../../../tags/%E4%B8%BA%E4%BA%86%E7%94%9F%E6%B4%BB/">
+                        <span class="chip bg-color">为了生活</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -617,16 +559,16 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+                本篇&nbsp;<i class="far fa-dot-circle"></i>
             </div>
             <div class="card">
-                <a href="../2020-04-01%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AC%AC%E4%B8%89%E5%BC%B9/">
+                <a href="">
                     <div class="card-image">
                         
                         
-                        <img src="../../../../medias/featureimages/0.jpg" class="responsive-img" alt="">
+                        <img src="../../../../medias/featureimages/17.jpg" class="responsive-img" alt="要自强">
                         
-                        <span class="card-title"></span>
+                        <span class="card-title">要自强</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -647,6 +589,7 @@
                         </span>
                     </div>
                 </div>
+
                 
             </div>
         </div>
@@ -794,7 +737,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">7.5k</span>
+                        class="white-color">1.9k</span>
             
             
             
