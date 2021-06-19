@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>我的错误</title>
+      <link href="/2021/06/18/python%E5%AD%A6%E4%B9%A0/"/>
+      <url>/2021/06/18/python%E5%AD%A6%E4%B9%A0/</url>
+      
+        <content type="html"><![CDATA[<p>犯了一个错误，以后慢慢改吧！</p><pre class="line-numbers language-none"><code class="language-none">from torch.utils.data import DataLoader, random_splitfrom torchvision import transforms, datasets, modelsimport torch.nn as nnfrom torch.optim import SGDimport torchimport os#print(torch.cuda.is_available())#使用GPUdevice &#x3D; torch.device(&#39;cuda:0&#39;)#自定义数据集data_transform &#x3D; transforms.Compose([    transforms.Resize((224, 224)),    transforms.RandomHorizontalFlip(),    transforms.ToTensor(),    transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])])full_datasets &#x3D; datasets.ImageFolder(root &#x3D; &#39;.&#x2F;dataset&#39;, transform &#x3D; data_transform)#分为训练集和测试集train_size &#x3D; 1000test_size &#x3D; len(full_datasets) - train_sizetrain_datasets, test_datasets &#x3D; random_split(full_datasets, [train_size, test_size])#载入训练集和测试集batch_size_num &#x3D; 16load_train_datasets &#x3D; DataLoader(dataset &#x3D; train_datasets, batch_size&#x3D; batch_size_num, shuffle &#x3D; True)load_test_datasets &#x3D; DataLoader(dataset &#x3D; test_datasets, batch_size &#x3D; batch_size_num, shuffle &#x3D; True)#使用googlenet算法cnn &#x3D; models.googlenet(pretrained &#x3D; True)#将分类层的参数改为2features &#x3D; cnn.fc.in_featurescnn.fc &#x3D; nn.Linear(features, 2)#模型放入GPU中cnn &#x3D; cnn.to(device)#loss设置和梯度下降法lr_num &#x3D; 0.001loss_function &#x3D; nn.CrossEntropyLoss()optimizer &#x3D; SGD(cnn.parameters(), lr &#x3D; lr_num, momentum &#x3D; 0.9)#scheduler &#x3D; lr_scheduler.StepLR(optimizer &#x3D; optimizer, step_size &#x3D; 100, gamma &#x3D; 0.5)epochs &#x3D; 5for epoch in range(epochs):    loss_value &#x3D; 0.0    #scheduler.step()    #启用 BatchNormalization 和 Dropout    cnn.train()    for i, (datas_train, labels_train) in enumerate(load_train_datasets):        datas_train &#x3D; datas_train.to(device)        labels_train &#x3D; labels_train.to(device)                #优化器优化        optimizer.zero_grad()        outputs &#x3D; cnn(datas_train)        loss &#x3D; loss_function(outputs, labels_train)        loss.backward()        optimizer.step()        loss_value +&#x3D; loss.cpu().item()        correct &#x3D; 0    #每一个batch的loss求和除以batch的数量，就是该次epoch的平均loss    loss_value &#x3D; loss_value * batch_size_num &#x2F; train_size    cnn.eval()    #预测    for datas_test, labels_test in load_test_datasets:        datas_test &#x3D; datas_test.to(device)        labels_test &#x3D; labels_test.to(device)            outputs_test &#x3D; cnn(datas_test)        prediction &#x3D; torch.max(outputs_test, 1)[1]        #同样的计算该次epoch的acc        acc +&#x3D; (torch.sum((prediction &#x3D;&#x3D; labels_test))).cpu().to(torch.float32)    print(&#39;epochs: &#123;&#125; |loss &#x3D; &#123;:.5f&#125; |accurcay &#x3D; &#123;:.5f&#125;&#39;.format(epoch + 1, loss_value, acc &#x2F; test_size))print(&#39;学习率:&#39;, lr_num, &#39;|Epochs:&#39;, epochs, &#39;|batch_size:&#39;, batch_size_num)os.system(&quot;pause&quot;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 进步 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 博客报错 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>我的规划</title>
       <link href="/2021/06/18/%E8%81%8C%E4%B8%9A%E7%94%9F%E6%B6%AF%E8%A7%84%E5%88%92/"/>
       <url>/2021/06/18/%E8%81%8C%E4%B8%9A%E7%94%9F%E6%B6%AF%E8%A7%84%E5%88%92/</url>
