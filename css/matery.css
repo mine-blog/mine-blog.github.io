@@ -149,6 +149,7 @@ code {
 }
 
 .code_lang {
+    font-size: 1.2rem;
     position: absolute;
     top: 1.2rem;
     right: 46px;
@@ -1599,6 +1600,7 @@ thead {
 }
 
 .post-statis .statis {
+    line-height: normal;
     display: inline-block;
     padding: 0.3rem 0.8rem;
     text-align: center;
@@ -1607,7 +1609,7 @@ thead {
 
 .post-statis .statis .count {
     display: block;
-    font-size: 1.3rem;
+    font-size: 2rem;
     font-weight: bold;
     text-decoration: underline;
 }
@@ -1617,8 +1619,8 @@ thead {
 }
 
 .post-statis .statis .name {
-    font-size: 0.9rem;
-    color: #777;
+    font-size: 1.5rem;
+    color: #000000;
 }
 
 #aboutme .social-link {
@@ -1658,14 +1660,14 @@ thead {
 
 .profile .author .title {
     margin-bottom: 0.1rem;
-    font-size: 1.8rem;
+    font-size: 3.8rem;
     font-weight: 500;
     color: #3C4858;
 }
 
 .profile .author .career {
     margin: 8px 0;
-    font-size: 0.9rem;
+    font-size: 1.8rem;
     font-weight: 400;
     color: #777;
 }
