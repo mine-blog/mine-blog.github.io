@@ -433,7 +433,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-06-22
+                    2021-06-23
                 </div>
                 
 
@@ -470,7 +470,9 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="堆溢出"><a href="#堆溢出" class="headerlink" title="堆溢出"></a>堆溢出</h1><p>这篇文章也是花了很久的时间才能说半抄半理解结束，其中有一些内容到现在还是不清楚，但愿自己慢慢思考。</p>
+                <p>这篇文章也是花了很久的时间才能说半抄半理解结束，其中有一些内容到现在还是不清楚，但愿自己慢慢思考。</p>
+<span id="more"></span>
+
 <ul>
 <li><p>堆的构造与维护原理</p>
 <ul>
@@ -608,7 +610,7 @@
 <li><p>此类型的chunk用于提高连续malloc(small chunk)的效率，主要是提高内存分配的局部性。那么具体是怎么提高局部性的呢？举例说明。当用户请求一个small chunk，且该请求无法被small bin满足，那么就转而交由unsorted bin处理。同时，假设当前unsorted bin中只有一个chunk的话——就是last remainder chunk，那么就将该chunk分成两部分：前者分配给用户，剩下的部分放到unsorted bin中，并成为新的last remainder chunk。这样就保证了连续malloc(small chunk)中，各个small chunk在内存分布中是相邻的，即提高了内存分配的局部性。</p>
 </li>
 </ul>
-<h4 id="堆溢出-1"><a href="#堆溢出-1" class="headerlink" title="堆溢出"></a>堆溢出</h4><p><strong>与栈溢出的区别</strong></p>
+<h4 id="堆溢出"><a href="#堆溢出" class="headerlink" title="堆溢出"></a>堆溢出</h4><p><strong>与栈溢出的区别</strong></p>
 <ol>
 <li>堆溢出方向=堆增长方向。</li>
 <li>首先破坏（虚拟地址意义上的）下一个堆块的构造。</li>
@@ -738,47 +740,45 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="">
+                <a href="../%E5%AF%B9%E6%99%A8%E6%99%A8%E8%AF%B4%E7%9A%84%E8%AF%9D/">
                     <div class="card-image">
                         
-                        <img src="../../../../medias/banner/2.jpg" class="responsive-img" alt="软件安全期末">
+                        <img src="../../../../medias/banner/6.jpg" class="responsive-img" alt="对晨晨说的话">
                         
-                        <span class="card-title">软件安全期末</span>
+                        <span class="card-title">对晨晨说的话</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            软件安全涉及我们生活每一个部分，大多数情况我们不会在意它，但一些不良的操作可能会是我们的隐私陷入危险的状态，希望多多关注生活中的网络安全！
+                            生活像是一个球，裹挟着我前行，我看它，它停下来，我从来没想过自己会有这样的时光。我期待你的到来很久。
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-06-22
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-06-22
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="../../../../categories/%E5%A4%A7%E4%B8%89%E4%B8%8B%E6%9C%9F%E6%9C%AB%E8%80%83%E8%AF%95/" class="post-category">
-                                    大三下期末考试
+                            <a href="../../../../categories/%E8%83%9C%E8%83%9C%E7%9A%84%E5%91%A8%E8%AE%B0/" class="post-category">
+                                    胜胜的周记
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="../../../../tags/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8/">
-                        <span class="chip bg-color">软件安全</span>
+                    <a href="../../../../tags/%E8%83%9C%E8%83%9C/">
+                        <span class="chip bg-color">胜胜</span>
                     </a>
                     
                 </div>
@@ -795,9 +795,9 @@
                 <a href="../../20/CC%E7%9A%84%E5%BF%AB%E4%B9%90/">
                     <div class="card-image">
                         
-                        <img src="../../../../medias/banner/3.jpg" class="responsive-img" alt="CC的快乐">
+                        <img src="../../../../medias/banner/3.jpg" class="responsive-img" alt="等待爱情">
                         
-                        <span class="card-title">CC的快乐</span>
+                        <span class="card-title">等待爱情</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -977,7 +977,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">9.8k</span>
+                        class="white-color">10.9k</span>
             
             
             
