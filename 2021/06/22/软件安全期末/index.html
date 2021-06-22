@@ -277,7 +277,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../medias/featureimages/2.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../medias/banner/2.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -526,7 +526,7 @@
 </ul>
 <p>thread arena只含有一个malloc_state(即arena header)，却有两个heap_info(即heap header)。由于两个heap segments是通过mmap分配的内存，两者在内存布局上并不相邻而是分属于不同的内存区间，所以为了便于管理，libc malloc将第二个heap_info结构体的prev成员指向了第一个heap_info结构体的起始位置（即ar_ptr成员），而第一个heap_info结构体的ar_ptr成员指向了malloc_state，这样就构成了一个单链表，方便后续管理。</p>
 <p><strong>堆块进化史</strong></p>
-<p><img src="./%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E6%9C%9F%E6%9C%AB/1.jpg"></p>
+<p><img src="../%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E6%9C%9F%E6%9C%AB/1.jpg"></p>
 <p>左上是allocated chunk格式，左下是free chunk格式，右边是整个堆内存组织成一个连续的已分配或未分配chunk序列。</p>
 <p>堆内存中要求每个chunk的大小必须为8的整数倍，因此chunk size的后3位是无效的，为了充分利用内存，堆管理器将这3个比特位用作chunk的标志位，典型的就是将第0比特位用于标记该chunk是否已经被分配。</p>
 <blockquote>
@@ -565,7 +565,7 @@
 </ul>
 </li>
 </ul>
-<p><img src="./%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E6%9C%9F%E6%9C%AB/2.jpg"></p>
+<p><img src="../%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E6%9C%9F%E6%9C%AB/2.jpg"></p>
 <p>在所有的 bins 中，fast bins 路径享有最快的内存分配及释放速度。</p>
 <p><strong>堆的工作原理</strong></p>
 <p>每个 fast bin 都维护着一条 free chunk 的单链表，采用单链表是因为链表中所有 chunk 的大小相等，增删 chunk 发生在链表顶端即可；—— LIFO。添加操作(free内存)就是将新的fast chunk加入链表尾，删除操作(malloc内存)就是将链表尾部的fast chunk删除。需要注意的是，为了实现LIFO算法，fastbinsY数组中每个fastbin元素均指向了该链表的rear end（尾结点），而尾结点通过其fd指针指向前一个结点，依次类推。<br>chunk 大小：8 字节递增。 fast bins 由一系列所维护 chunk 大小以 8 字节递增的 bins 组成。也即，fast bin[0] 维护大小为 16 字节的 chunk、fast bin[1] 维护大小为 24 字节的 chunk。依此类推……  指定 fast bin 中所有 chunk 大小相同；</p>
@@ -632,7 +632,7 @@
 <p>首先检测next chunk是否为free。那么如何检测呢？通过查询next chunk之后的chunk的PREV_INUSE (P)。</p>
 <p><strong>即可如果为free的话，那么就进行向前合并</strong></p>
 <p>本质是将next chunk从双向链表中移除，合并到当前chunk。<br>在glibc malloc中，会将合并后的chunk(或因为不满足合并条件而没合并的chunk) ，放到unsorted bin中。</p>
-<p><img src="./%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E6%9C%9F%E6%9C%AB/3.jpg"></p>
+<p><img src="../%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E6%9C%9F%E6%9C%AB/3.jpg"></p>
 <ol>
 <li><p>在代码3中存在一个堆溢出漏洞：如果用户输入的argv1的大小比first变量的666字节更大的话，那么输入的数据就有可能覆盖掉下一个chunk的chunk header——这可以导致任意代码执行。而攻击的核心思路就是利用glibc malloc的unlink机制。</p>
 </li>
@@ -746,8 +746,7 @@
                 <a href="">
                     <div class="card-image">
                         
-                        
-                        <img src="../../../../medias/featureimages/2.jpg" class="responsive-img" alt="软件安全期末">
+                        <img src="../../../../medias/banner/2.jpg" class="responsive-img" alt="软件安全期末">
                         
                         <span class="card-title">软件安全期末</span>
                     </div>
@@ -796,8 +795,7 @@
                 <a href="../../20/CC%E7%9A%84%E5%BF%AB%E4%B9%90/">
                     <div class="card-image">
                         
-                        
-                        <img src="../../../../medias/featureimages/17.jpg" class="responsive-img" alt="CC的快乐">
+                        <img src="../../../../medias/banner/3.jpg" class="responsive-img" alt="CC的快乐">
                         
                         <span class="card-title">CC的快乐</span>
                     </div>
