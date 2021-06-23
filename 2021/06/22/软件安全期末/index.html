@@ -495,7 +495,7 @@
 </li>
 </ul>
 <p>堆的创建和维护通过malloc实现。</p>
-<p>堆内存是移动[Program Break]的位置产生的（通过brk中断），实际产生的堆比申请的堆还要大，这个连续的对区域被称为[arena]。被主进程创建的，因此称为[main arena]。接下来申请会分配到这个arena的多余申请空间的部分。分配完毕后，它可以通过继续移动Program Break的位置扩容。扩容后，top chunk的大小也随之调整，将这块新增的空间圈进去。相应地，arena也可以在top chunk过大时缩小。top chunk是一个 arena位于最顶层的chunk。</p>
+<p>堆内存是移动[Program Break]的位置产生的（通过brk中断），实际产生的堆比申请的堆还要大，这个连续的堆区域被称为[arena]。被主进程创建的，因此称为[main arena]。接下来申请会分配到这个arena的多余申请空间的部分。分配完毕后，它可以通过继续移动Program Break的位置扩容。扩容后，top chunk的大小也随之调整，将这块新增的空间圈进去。相应地，arena也可以在top chunk过大时缩小。top chunk是一个 arena位于最顶层的chunk。</p>
 <blockquote>
 <p>注意：非直接返还给系统，由malloc库函数管理，将其添加到bin。当用户再次调用，首先从bins查找是否有满足的，若没有才向操作系统申请新的堆空间，以提高整个效率。</p>
 </blockquote>
@@ -507,7 +507,7 @@
 <li>32位系统=2*内核数+1</li>
 <li>64位系统=8*内核数+1</li>
 </ul>
-<p>单核32位系统，运行多线程程序–1个主线程+3个用户线程，malloc如何令4个线程共享3个arena？</p>
+<p>单核32位系统，运行多线程程序—-1个主线程+3个用户线程，malloc如何令4个线程共享3个arena？</p>
 <p>主线程分配主arena,线程1、2分别分配arena，那么线程3需要重复使用已分配好的arena.glibc malloc循环遍历所有可用的场地，如果lock成功（该 场地当前对应的线程并未使用堆内存），则将该场地供线程3使用。</p>
 <p>如果没有找到可用的area，则将线程3的malloc操作阻塞，直到找到可用的为止。</p>
 <ul>
@@ -519,13 +519,11 @@
 </li>
 <li><p>malloc_chunk ——Chunk header—— 根据用户请求，每个堆被分为若干 chunk。每个 chunk 都有自己的 chunk header；</p>
 </li>
-<li><p>Main arena 无需维护多个堆，因此也无需heap_info。当空间耗尽时，与 thread arena 不同，main arena 可以通过 sbrk 拓展堆段，直至堆段[碰]到内存映射段；</p>
-</li>
-<li><p>与 thread arena 不同，main arena 的 arena header 不是保存在通过 sbrk 申请的堆段里，而是作为一个全局变量，可以在 libc.so 的数据段中找到。</p>
-</li>
 </ul>
 </li>
 </ul>
+<p>Main arena 无需维护多个堆，因此也无需heap_info。当空间耗尽时，与 thread arena 不同，main arena 可以通过 sbrk 拓展堆段，直至堆段[碰]到内存映射段；</p>
+<p>与 thread arena 不同，main arena 的 arena header 不是保存在通过 sbrk 申请的堆段里，而是作为一个全局变量，可以在 libc.so 的数据段中找到。</p>
 <p>thread arena只含有一个malloc_state(即arena header)，却有两个heap_info(即heap header)。由于两个heap segments是通过mmap分配的内存，两者在内存布局上并不相邻而是分属于不同的内存区间，所以为了便于管理，libc malloc将第二个heap_info结构体的prev成员指向了第一个heap_info结构体的起始位置（即ar_ptr成员），而第一个heap_info结构体的ar_ptr成员指向了malloc_state，这样就构成了一个单链表，方便后续管理。</p>
 <p><strong>堆块进化史</strong></p>
 <p><img src="../%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E6%9C%9F%E6%9C%AB/1.jpg"></p>
