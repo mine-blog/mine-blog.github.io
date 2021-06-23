@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>网络安全基础</title>
+      <link href="/2021/06/23/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/"/>
+      <url>/2021/06/23/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/</url>
+      
+        <content type="html"><![CDATA[<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><ol><li>计算机安全概念<br>计算机安全核心地位的3个关键目标：机密性、完整性、可用性。<br>还有2个：真实性、可计量性。</li><li>OSI安全框架</li></ol><ul><li>安全攻击<ul><li>主动攻击<br>包含数据流的改写和错误数据流的添加。<br>划分4类：假冒、重放、改写消息、拒绝服务。</li><li>被动攻击<br>包含2种主要形式：消息内容泄露和流量攻击。<br>对抗被动攻击的重点是防范而不是检测。</li></ul></li><li>安全服务<ul><li>认证<br>（1）对等实体认证<br>（2）数据源认证</li><li>访问控制</li><li>数据机密性</li><li>数据完整性</li><li>不可抵赖性<br>（1）源<br>（2）目的地</li></ul></li><li>安全机制<br>安全服务实现了安全策略， 而安全机制实现了安全服务。</li></ul><ol start="3"><li>网络安全模型<br><img src="../%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/1.jpg"></li><li>网络访问安全模型<br><img src="../%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/2.jpg"></li></ol><p><strong>解决有害访问的安全机制</strong></p><ul><li>看门人功能</li><li>屏蔽逻辑<h2 id="对称加密和消息机密性"><a href="#对称加密和消息机密性" class="headerlink" title="对称加密和消息机密性"></a>对称加密和消息机密性</h2></li></ul><ol><li>密码体制<br>密码体制：对称密码体制、公钥密码体制。<br>流密码是属于对称密码体制范畴。</li></ol><p><strong>对称加密方案组成</strong></p><ul><li>明文</li><li>加密算法</li><li>密钥</li><li>密文</li><li>解密算法</li></ul><ol start="2"><li>密码分析</li></ol><ul><li>唯密文（最难破解）</li><li>已知明文</li><li>选择明文</li><li>选择密文</li><li>选择文本（最容易破解）</li></ul><p>加密的两个基本模块是：代替和置换。<br>为了抵抗统计分析破译法，香农给出了设计分组密码体制的两个一般原则: 扩散与混淆。<br>3. Feistel密码结构<br>分组越大表示越高的安全性。<br><strong>DES</strong></p><ul><li>DES属于Feistel结构，明文长度64比特，密钥长度56比特。其中最重要的部分为非线性替换S盒。</li></ul><p><strong>三重DES</strong><br>使用了3次DES算法，过程按照加密-解密-加密的顺序。<br><strong>加密</strong><br>C=E(K3,D(K2,E(K1,P)))<br><strong>解密</strong><br>P=D(K1,E(K2,D(K3,C)))<br>知道过程是反过来的就行。<br>4. AES<br>明文长度是128比特，密钥长度可以是128、192、256比特。<br><strong>每1轮4个不同的步骤</strong></p><ul><li>字节替换（使用S盒，分组逐一替换）</li><li>行移位</li><li>列混淆</li><li>轮密钥加</li></ul><ol start="5"><li>随机数与伪随机数<br>随机数</li></ol><ul><li>随机性、不可预测性。</li></ul><p><strong>伪随机数生成方法</strong></p><ul><li>真随机数发生器</li><li>伪随机数生成器</li><li>伪随机函数</li></ul><p>常用密码算法创造伪随机函数</p><ul><li>对称的分组密码</li><li>不对称的密码</li><li>散列函数和消息认证码</li></ul><ol start="6"><li>流密码和RC4</li></ol><p><strong>设计流密码考虑因素</strong></p><ul><li>加密序列有长周期</li><li>密钥流尽可能接近真随机数的性质</li><li>伪随机数生成器的输出受输入密钥值控制</li></ul><p><strong>RC4算法</strong><br>用1–256个字节(8-2048位)的可变长度密钥初始化一个256个字节的状态向量S，S的元素记为[1],S[2],…,S[255]，从始至终置换后的S包含从0到255的所有8位数。对于加密和解密，字节k是从S的255个元素中按一种系统化的方式选出的一个元素生成的。每生成一个k的值，S中的元素个体就被重新置换一次。<br>7. 分组密码工作模式<br><img src="../%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/3.jpg"><br>问：若各中工作模式传输出现错误（错误1个比特），则会影响整体多长？<br>问：五种分组密码的工作模式中，哪几种适合用于流密码中？</p><h2 id="公钥密码和消息认证"><a href="#公钥密码和消息认证" class="headerlink" title="公钥密码和消息认证"></a>公钥密码和消息认证</h2><ol><li>MAC的定义</li></ol><p>一种认证技术利用私钥产生一小块数据，称之为消息认证码。保证了数据的完整性和真实性。还可能保证时效性。<br>很多算法都可以生成MAC，比如DES。<br>MAC的一种替代方法是使用单向散列函数，可接受变长的消息M作为输入，生成定长的消息摘要H（M）作为输出。消息摘要随消息一起以可信的形式传送。<br>2. 安全散列函数<br><strong>要求</strong></p><ul><li>输入长度可变</li><li>输出长度固定</li><li>效率高</li><li>抗原像攻击（单向性）</li><li>抗第二原像攻击（抗弱碰撞性）</li><li>抗碰撞攻击（抗强碰撞性）</li><li>伪随机性</li></ul><h2 id="密钥分配和用户认证"><a href="#密钥分配和用户认证" class="headerlink" title="密钥分配和用户认证"></a>密钥分配和用户认证</h2><h2 id="网络访问控制和云安全"><a href="#网络访问控制和云安全" class="headerlink" title="网络访问控制和云安全"></a>网络访问控制和云安全</h2><h2 id="传输层安全"><a href="#传输层安全" class="headerlink" title="传输层安全"></a>传输层安全</h2><h2 id="无线网络安全"><a href="#无线网络安全" class="headerlink" title="无线网络安全"></a>无线网络安全</h2><h2 id="IP安全"><a href="#IP安全" class="headerlink" title="IP安全"></a>IP安全</h2><h2 id="恶意软件"><a href="#恶意软件" class="headerlink" title="恶意软件"></a>恶意软件</h2><ol><li>病毒</li></ol><p><strong>组成部分（1或多或重复包含）</strong></p><ul><li>感染机制</li><li>触发</li><li>载荷</li></ul><p><strong>生命周期</strong></p><ul><li>休眠阶段</li><li>传播阶段</li><li>触发阶段</li><li>执行阶段</li></ul><p><strong>按目标分类</strong></p><ul><li>引导扇区感染病毒</li><li>文件感染病毒</li><li>宏病毒</li><li>混合体病毒</li></ul><p><strong>按隐藏策略分类</strong></p><ul><li>加密病毒</li><li>隐形飞机式病毒</li><li>多态病毒</li><li>变形病毒</li></ul><p><strong>分布式拒绝服务攻击DDoS</strong></p><h2 id="入侵者"><a href="#入侵者" class="headerlink" title="入侵者"></a>入侵者</h2><ol><li>常用的入侵检测方法<br>统计异常检测，定义通常的或期望的行为。</li></ol><ul><li>阈值检测</li><li>基于行为曲线</li></ul><p>基于规则的检测，定义合适的行为。</p><ul><li>异常检测</li><li>渗透检测<h2 id="防火墙"><a href="#防火墙" class="headerlink" title="防火墙"></a>防火墙</h2></li></ul><ol><li>防火墙类型</li></ol><ul><li>包过滤防火墙</li><li>状态检测防护墙</li><li>链路层网关</li><li>应用层网关</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 大三下期末考试 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 网络安全 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>软件安全高级内存访问</title>
       <link href="/2021/06/23/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E9%AB%98%E7%BA%A7%E5%86%85%E5%AD%98%E8%AE%BF%E9%97%AE/"/>
       <url>/2021/06/23/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E9%AB%98%E7%BA%A7%E5%86%85%E5%AD%98%E8%AE%BF%E9%97%AE/</url>
