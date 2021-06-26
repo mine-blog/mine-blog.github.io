@@ -433,7 +433,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-06-24
+                    2021-06-26
                 </div>
                 
 
@@ -496,13 +496,9 @@
 </li>
 </ul>
 </li>
-<li>安全机制<br>安全服务实现了安全策略， 而安全机制实现了安全服务。</li>
+<li>安全机制</li>
 </ul>
-<ol start="3">
-<li>网络安全模型<br><img src="../%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/1.jpg"></li>
-<li>网络访问安全模型<br><img src="../%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/2.jpg"></li>
-</ol>
-<p><strong>解决有害访问的安全机制</strong></p>
+<p>安全服务实现了安全策略， 而安全机制实现了安全服务。<br>3. 网络安全模型<br><img src="../%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/1.jpg"><br>4. 网络访问安全模型<br><img src="../%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/2.jpg"><br><strong>解决有害访问的安全机制</strong></p>
 <ul>
 <li>看门人功能</li>
 <li>屏蔽逻辑</li>
@@ -790,9 +786,9 @@
 <li>安全协议标识符：标识该关联是否AH或ESP安全关联。</li>
 </ul>
 <ol start="6">
-<li>IPSec ESP Header格式<br><img src="../%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/17.jpg"><br><img src="../%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/18.jpg"></li>
+<li>IPSec ESP Header格式</li>
 </ol>
-<p><strong>填充域有如下几个作用</strong></p>
+<p><img src="../%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/17.jpg"><br><img src="../%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/18.jpg"><br><strong>填充域有如下几个作用</strong></p>
 <ul>
 <li>填充域用于把明文(包括载荷数据、填充、填充长度、邻接报头域)扩展到需要的长度 (如分组加密要求明文是分组长度的整数倍) 。</li>
 <li>ESP格式要求填充长度和邻接报头域为32比特的字，密文也是32比特的整数倍，填充域用来保证这样的排列。</li>
@@ -806,7 +802,7 @@
 <li>序列号能阻止重放攻击。每建立一个新的SA，发送方把序列号计数器的初始值设为0，每次在SA上发送一个包，则发送方增加计数器的值。</li>
 <li>IP提供无连接且不可靠的分组投递服务，不能保证分组能按照顺序传输，也不能保证无丢失。IPSec规定接收方应该实现一个大小为W的窗口(W的默认值为64)。</li>
 </ul>
-<p><img src="../%E7%BD%91%E7%BB%9C%E7%A9%BA%E9%97%B4%E5%AE%89%E5%85%A8/19.jpg"><br>8. 密钥确定协议<br>基于DH交换<br>DH交换的缺陷</p>
+<p><img src="../%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/19.jpg"><br>8. 密钥确定协议<br>基于DH交换<br>DH交换的缺陷</p>
 <ul>
 <li>没有身份标识和认证</li>
 <li>易受中间人攻击</li>
@@ -820,7 +816,7 @@
 <li>可以交换DH的公钥值</li>
 <li>对DH交换进行认证，防止中间人攻击</li>
 </ul>
-<p><img src="../%E7%BD%91%E7%BB%9C%E7%A9%BA%E9%97%B4%E5%AE%89%E5%85%A8/2.jpg"><br>9. IPSec的优点和路由应用<br><strong>IPSec的优点</strong></p>
+<p><img src="../%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/20.jpg"><br>9. IPSec的优点和路由应用<br><strong>IPSec的优点</strong></p>
 <ul>
 <li>提供强大的安全性，应用于防火墙和路由器。</li>
 <li>IPSec在传输层以下，对所有的应用透明。</li>
@@ -945,29 +941,28 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="">
+                <a href="../../25/%E4%BF%A1%E6%81%AF%E4%B8%8E%E5%86%85%E5%AE%B9%E5%AE%89%E5%85%A8/">
                     <div class="card-image">
                         
-                        <img src="../../../../medias/banner/2.jpg" class="responsive-img" alt="网络安全基础">
+                        <img src="../../../../medias/" class="responsive-img" alt="信息与内容安全">
                         
-                        <span class="card-title">网络安全基础</span>
+                        <span class="card-title">信息与内容安全</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            自己也没有很系统的总结这门课程讲述的内容，只是针对自己的期末考试（西电网信院），如果你碰巧看到也不要细究哦。
+                            
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-06-23
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-06-25
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -980,12 +975,11 @@
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="../../../../tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">
-                        <span class="chip bg-color">网络安全</span>
+                    <a href="../../../../tags/%E4%BF%A1%E6%81%AF%E4%B8%8E%E5%86%85%E5%AE%B9%E5%AE%89%E5%85%A8/">
+                        <span class="chip bg-color">信息与内容安全</span>
                     </a>
                     
                 </div>
@@ -1184,7 +1178,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">20.1k</span>
+                        class="white-color">21.7k</span>
             
             
             

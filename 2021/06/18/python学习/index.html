@@ -4,7 +4,7 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="我的错误, try best">
+    <meta name="keywords" content="一个小实验, try best">
     <meta name="description" content="兴趣所致，希望在生活中有无尽的快乐！">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -27,7 +27,7 @@
 </script>
 
 
-    <title>我的错误 | BURAN</title>
+    <title>一个小实验 | BURAN</title>
     <link rel="icon" type="image/png" href="../../../../favicon.png">
 
     <link rel="stylesheet" type="text/css" href="../../../../libs/awesome/css/all.css">
@@ -277,12 +277,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../medias/featureimages/17.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../medias/featureimages/19.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">我的错误</h1>
+                    <h1 class="description center-align post-title">一个小实验</h1>
                 </div>
             </div>
         </div>
@@ -433,14 +433,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-06-19
+                    2021-06-25
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    433
+                    436
                 </div>
                 
 
@@ -541,6 +541,7 @@ for epoch in range(epochs):
     loss_value &#x3D; loss_value * batch_size_num &#x2F; train_size
     cnn.eval()
     #预测
+    acc &#x3D; 0
     for datas_test, labels_test in load_test_datasets:
         datas_test &#x3D; datas_test.to(device)
         labels_test &#x3D; labels_test.to(device)    
@@ -551,7 +552,7 @@ for epoch in range(epochs):
         acc +&#x3D; (torch.sum((prediction &#x3D;&#x3D; labels_test))).cpu().to(torch.float32)
     print(&#39;epochs: &#123;&#125; |loss &#x3D; &#123;:.5f&#125; |accurcay &#x3D; &#123;:.5f&#125;&#39;.format(epoch + 1, loss_value, acc &#x2F; test_size))
 print(&#39;学习率:&#39;, lr_num, &#39;|Epochs:&#39;, epochs, &#39;|batch_size:&#39;, batch_size_num)
-os.system(&quot;pause&quot;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+os.system(&quot;pause&quot;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 
             </div>
             <hr/>
@@ -846,7 +847,7 @@ os.system(&quot;pause&quot;)<span aria-hidden="true" class="line-numbers-rows"><
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">20.1k</span>
+                        class="white-color">21.7k</span>
             
             
             
