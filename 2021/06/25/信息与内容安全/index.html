@@ -440,14 +440,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2k
+                    2.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    6 分
+                    8 分
                 </div>
                 
 
@@ -524,9 +524,12 @@
 <p>词频(TF)=某个词在文章中的出现次数/文章的总词数<br>逆文档频率(IDF)=log(语料库的文档总数/(包含该词的文档数+1))<br>TF-IDF = TF * IDF<br>7. 音频特征表达<br><strong>MFCC</strong><br><img src="../%E4%BF%A1%E6%81%AF%E4%B8%8E%E5%86%85%E5%AE%B9%E5%AE%89%E5%85%A8/6.jpg"></p>
 <h2 id="深度学习基础（重要）"><a href="#深度学习基础（重要）" class="headerlink" title="深度学习基础（重要）"></a>深度学习基础（重要）</h2><ol>
 <li>反向传播</li>
+</ol>
+<p><img src="../%E4%BF%A1%E6%81%AF%E4%B8%8E%E5%86%85%E5%AE%B9%E5%AE%89%E5%85%A8/20.jpg"></p>
+<ol start="2">
 <li>卷积神经网络</li>
 </ol>
-<p><strong>卷积的计算：矩阵对应位置先乘再加。</strong><br><strong>池化：最大池化，最小池化，平均池化。</strong><br>3. 理解神经网络<br><strong>神经网络可视化</strong><br>GoogLeNet<br>4. 经典神经网络结构<br><strong>LeNet-5</strong><br><strong>AlexNet</strong><br><strong>VGGNet</strong><br><strong>ResNet</strong></p>
+<p><strong>卷积的计算：矩阵对应位置先乘再加。</strong><br><strong>池化：最大池化，最小池化，平均池化。</strong><br><strong>全连接前馈网络</strong><br><img src="../%E4%BF%A1%E6%81%AF%E4%B8%8E%E5%86%85%E5%AE%B9%E5%AE%89%E5%85%A8/19.jpg"><br>3. 理解神经网络<br><strong>神经网络可视化</strong><br>GoogLeNet<br>4. 经典神经网络结构<br><strong>LeNet-5</strong><br><strong>AlexNet</strong><br><strong>VGGNet</strong><br><strong>ResNet</strong></p>
 <h2 id="生成对抗网络"><a href="#生成对抗网络" class="headerlink" title="生成对抗网络"></a>生成对抗网络</h2><ol>
 <li>GAN的种类</li>
 </ol>
@@ -611,7 +614,7 @@
 <ol start="5">
 <li>信息过滤分类体系</li>
 </ol>
-<p><img src="../%E4%BF%A1%E6%81%AF%E4%B8%8E%E5%86%85%E5%AE%B9%E5%AE%89%E5%85%A8/11.jpg"><br>基于感知的过滤，也称为基于内容的过滤。<br>基于社会的过滤，也成为基于协同的过滤。<br>6. AC自动机</p>
+<p><img src="../%E4%BF%A1%E6%81%AF%E4%B8%8E%E5%86%85%E5%AE%B9%E5%AE%89%E5%85%A8/11.jpg"><br>基于感知的过滤，也称为基于内容的过滤。<br>基于社会的过滤，也称为基于协同的过滤。<br>6. AC自动机</p>
 <ul>
 <li>基本思想</li>
 </ul>
@@ -645,7 +648,34 @@
 <li>波动期</li>
 <li>消退期</li>
 </ul>
-<h2 id="对抗攻击与防御"><a href="#对抗攻击与防御" class="headerlink" title="对抗攻击与防御"></a>对抗攻击与防御</h2><h2 id="视觉内容伪造与检测"><a href="#视觉内容伪造与检测" class="headerlink" title="视觉内容伪造与检测"></a>视觉内容伪造与检测</h2><ol>
+<h2 id="对抗攻击与防御"><a href="#对抗攻击与防御" class="headerlink" title="对抗攻击与防御"></a>对抗攻击与防御</h2><ol>
+<li>攻击想做什么</li>
+</ol>
+<p><strong>愚弄分类器，是分类器不能正常识别并且分类。</strong><br>2. 攻击的损失函数<br><strong>训练—-&gt;无目标攻击—-&gt;目标攻击</strong><br>约束：不能被发现。<br><img src="../%E4%BF%A1%E6%81%AF%E4%B8%8E%E5%86%85%E5%AE%B9%E5%AE%89%E5%85%A8/21.jpg"><br>3. 如何攻击<br><strong>梯度下降</strong><br><strong>攻击方法：FGSM（快速梯度符号法）</strong><br>4. 白盒和黑盒</p>
+<p>在前面的攻击中，我们固定网络参数𝜃而寻找最优的输入𝑥。</p>
+<ul>
+<li>为了攻击，我们需要知道网络参数𝜃。这样的攻击叫白盒攻击(White Box Attack)。</li>
+<li>如果我们不将模型公布是不是就安全?绝大多数API不能提供网络参数的。不行，因为黑盒攻击(Black Box Attack)是可能的。</li>
+<li>如果你有目标网络的训练数据，训练一个代理网络(proxy network)，否则，从目标网络获取输入输出对。</li>
+</ul>
+<ol start="5">
+<li>One Pixel Attack（一像素攻击）VS一般的攻击</li>
+</ol>
+<p><img src="../%E4%BF%A1%E6%81%AF%E4%B8%8E%E5%86%85%E5%AE%B9%E5%AE%89%E5%85%A8/22.jpg"><br>6. 2种类型的防御</p>
+<ul>
+<li>被动防御(Passive defense)：在不修改模型的情况下找到攻击图像。</li>
+<li>主动防御(Proactive defense): 训练一个对对抗攻击具有鲁棒性的模型。</li>
+</ul>
+<ol start="7">
+<li>总结</li>
+</ol>
+<p><strong>攻击: 在给定网络参数的情况下，攻击非常容易。</strong></p>
+<ul>
+<li>即使是黑盒攻击也是可能的</li>
+<li>防御：主动防御和被动防御</li>
+<li>未来：自适应攻击和防御</li>
+</ul>
+<h2 id="视觉内容伪造与检测"><a href="#视觉内容伪造与检测" class="headerlink" title="视觉内容伪造与检测"></a>视觉内容伪造与检测</h2><ol>
 <li>Deepfake事件</li>
 </ol>
 <p>图像内容伪造<br>2. 内容伪造方法</p>
@@ -988,7 +1018,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">22.1k</span>
+                        class="white-color">22.4k</span>
             
             
             
