@@ -4,7 +4,7 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="网络安全基础, try best">
+    <meta name="keywords" content="软件安全模糊测试, try best">
     <meta name="description" content="兴趣所致，希望在生活中有无尽的快乐！">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -27,7 +27,7 @@
 </script>
 
 
-    <title>网络安全基础 | BURAN</title>
+    <title>软件安全模糊测试 | BURAN</title>
     <link rel="icon" type="image/png" href="../../../../favicon.png">
 
     <link rel="stylesheet" type="text/css" href="../../../../libs/awesome/css/all.css">
@@ -277,12 +277,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../medias/banner/2.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../medias/featureimages/23.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">网络安全基础</h1>
+                    <h1 class="description center-align post-title">软件安全模糊测试</h1>
                 </div>
             </div>
         </div>
@@ -401,8 +401,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="../../../../tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">
-                                <span class="chip bg-color">网络安全</span>
+                            <a href="../../../../tags/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8/">
+                                <span class="chip bg-color">软件安全</span>
                             </a>
                         
                     </div>
@@ -426,28 +426,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-06-23
+                    2021-06-27
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-06-26
+                    2021-06-27
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    4.7k
+                    3.5k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    16 分
+                    12 分
                 </div>
                 
 
@@ -470,419 +470,181 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><ol>
-<li>计算机安全概念<br>计算机安全核心地位的3个关键目标：机密性、完整性、可用性。<br>还有2个：真实性、可计量性。</li>
-<li>OSI安全框架</li>
+                <p><strong>主体目录</strong></p>
+<ul>
+<li>模糊测试介绍<ul>
+<li>模糊测试概述</li>
+<li>简单示例</li>
+<li>模糊测试步骤</li>
+</ul>
+</li>
+<li>模糊测试案例<ul>
+<li>常见的模糊测试</li>
+<li>XSS 模糊测试</li>
+</ul>
+</li>
+</ul>
+<h2 id="模糊测试介绍"><a href="#模糊测试介绍" class="headerlink" title="模糊测试介绍"></a>模糊测试介绍</h2><h3 id="模糊测试概述"><a href="#模糊测试概述" class="headerlink" title="模糊测试概述"></a>模糊测试概述</h3><ol>
+<li>定义</li>
+</ol>
+<p>模糊测试（Fuzz testing/fuzzing）是一种发现安全漏洞的有效的测试方法，在安全性测试中越来越受到重视，模糊测试将随机的坏数据插入程序，观察程序是否能容忍杂乱输入。<br>模糊测试是不合逻辑的，只是产生杂乱数据攻击程序，采用模糊测试攻击应用程序可发现其他采用逻辑思维来测试很难发现的安全漏洞。<br>2. 模糊测试的本质<br><strong>跳出程序员制定的规则圈圈</strong><br>Fuzz技术的思想就是利用“暴力”来实现对目标程序的自动化测试，然后监视检查其最后的结果，如果符合某种情况就认为程序可能存在某种漏洞或者问题。<br>暴力指利用不断地向目标程序发送或者传递不同格式的数据来测试目标程序的反应。</p>
+<blockquote>
+<p>我们可以把模糊测试理解成为一种能自动进行”rough attack”尝试的工具。之所以说它是”rough attack”,是因为Fuzz往往可以触发一个缓冲区溢出的漏洞，但却不能实现有效的exploit。测试人员需要实时地捕捉目标程序抛出的异常、发生的崩溃和寄存器等信息，综合判断这些错误是不是真正的可利用漏洞。</p>
+</blockquote>
+<ol start="3">
+<li>模糊测试特点</li>
 </ol>
 <ul>
-<li>安全攻击<ul>
-<li>主动攻击<br>包含数据流的改写和错误数据流的添加。<br>划分4类：假冒、重放、改写消息、拒绝服务。</li>
-<li>被动攻击<br>包含2种主要形式：消息内容泄露和流量攻击。<br>对抗被动攻击的重点是防范而不是检测。</li>
+<li>测试的用例通常具备某种攻击性的畸形数据，用以触发各种类型的漏洞。</li>
+<li>具备较好的自动化测试能力。</li>
+<li>“暴力（蛮力）”攻击方法。</li>
+<li>很少出现误报。</li>
+<li>能够快速找到真正的漏洞，操作简单。</li>
+<li>通常不是进行功能性测试，而是检查系统处理错误的能力，比如：“入侵”、 “破坏” 、 “崩溃”。</li>
+<li>不能保证系统中已经没有漏洞，即使我们用Fuzz找到了100个严重的漏洞，系统中仍然可能存在第101个漏洞。</li>
 </ul>
-</li>
-<li>安全服务<ul>
-<li>认证<ul>
-<li>对等实体认证</li>
-<li>数据源认证</li>
-</ul>
-</li>
-<li>访问控制</li>
-<li>数据机密性</li>
-<li>数据完整性</li>
-<li>不可抵赖性<ul>
-<li>源</li>
-<li>目的地</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>安全机制</li>
-</ul>
-<p>安全服务实现了安全策略， 而安全机制实现了安全服务。<br>3. 网络安全模型<br><img src="../%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/1.jpg"><br>4. 网络访问安全模型<br><img src="../%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/2.jpg"><br><strong>解决有害访问的安全机制</strong></p>
-<ul>
-<li>看门人功能</li>
-<li>屏蔽逻辑</li>
-</ul>
-<h2 id="对称加密和消息机密性"><a href="#对称加密和消息机密性" class="headerlink" title="对称加密和消息机密性"></a>对称加密和消息机密性</h2><ol>
-<li>密码体制<br>密码体制：对称密码体制、公钥密码体制。<br>流密码是属于对称密码体制范畴。</li>
+<h3 id="简单示例"><a href="#简单示例" class="headerlink" title="简单示例"></a>简单示例</h3><ol>
+<li>模糊测试方式</li>
 </ol>
-<p><strong>对称加密方案组成</strong></p>
+<p><img src="../%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E6%A8%A1%E7%B3%8A%E6%B5%8B%E8%AF%95/1.jpg"></p>
+<h3 id="模糊测试步骤"><a href="#模糊测试步骤" class="headerlink" title="模糊测试步骤"></a>模糊测试步骤</h3><ol>
+<li>模糊测试常规步骤</li>
+</ol>
+<p><strong>典型模糊测试过程</strong></p>
 <ul>
-<li>明文</li>
-<li>加密算法</li>
-<li>密钥</li>
-<li>密文</li>
-<li>解密算法</li>
+<li>识别测试目标</li>
+<li>识别用户输入</li>
+<li>生成Fuzz测试数据</li>
+<li>执行Fuzz测试数据</li>
+<li>监视异常</li>
+<li>确定可利用性</li>
 </ul>
+<p><img src="../%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E6%A8%A1%E7%B3%8A%E6%B5%8B%E8%AF%95/2.jpg"></p>
 <ol start="2">
-<li>密码分析</li>
+<li>模糊测试的主要方法</li>
+</ol>
+<p><img src="../%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E6%A8%A1%E7%B3%8A%E6%B5%8B%E8%AF%95/3.jpg"></p>
+<ol start="3">
+<li>模糊测试类型</li>
+</ol>
+<p><strong>本地模糊器</strong></p>
+<ul>
+<li>命令行模糊测试器</li>
+<li>环境变量模糊测试器</li>
+<li>文件格式模糊测试器</li>
+</ul>
+<p><strong>远程模糊测试器</strong></p>
+<ul>
+<li>网络协议模糊测试器（简单协议、复杂协议）</li>
+<li>Web应用模糊测试器</li>
+</ul>
+<p><strong>内存模糊测试器</strong><br><strong>模糊测试框架</strong></p>
+<h2 id="模糊测试案例"><a href="#模糊测试案例" class="headerlink" title="模糊测试案例"></a>模糊测试案例</h2><h3 id="常见模糊测试"><a href="#常见模糊测试" class="headerlink" title="常见模糊测试"></a>常见模糊测试</h3><p><strong>典型模糊测试</strong></p>
+<ul>
+<li>文件Fuzz测试</li>
+<li>协议Fuzz测试</li>
+<li>组件Fuzz测试</li>
+<li>Web Fuzz测试</li>
+</ul>
+<ol>
+<li>文件Fuzz测试</li>
 </ol>
 <ul>
-<li>唯密文（最难破解）</li>
-<li>已知明文</li>
-<li>选择明文</li>
-<li>选择密文</li>
-<li>选择文本（最容易破解）</li>
+<li>盲模糊测试</li>
 </ul>
-<p>加密的两个基本模块是：代替和置换。<br>为了抵抗统计分析破译法，香农给出了设计分组密码体制的两个一般原则: 扩散与混淆。<br>3. Feistel密码结构<br>分组越大表示越高的安全性。<br><strong>DES</strong></p>
+<p><strong>操作</strong><br>在随机位置插入随机的数据以生成畸形文件。<br><strong>事实</strong><br>现代软件往往使用非常复杂的私有数据结构，数据结构越复杂，解析程序的逻辑就越复杂，越容易出错。<br><strong>结果</strong><br>产生测试用例的策略缺少针对性、大量测试用例无效、难以发现复杂解析器深层逻辑的漏洞。</p>
 <ul>
-<li>DES属于Feistel结构，明文长度64比特，密钥长度56比特。其中最重要的部分为非线性替换S盒。</li>
+<li>智能模糊测试</li>
 </ul>
-<p><strong>三重DES</strong><br>使用了3次DES算法，过程按照加密-解密-加密的顺序。<br><strong>加密</strong><br>C=E(K3,D(K2,E(K1,P)))<br><strong>解密</strong><br>P=D(K1,E(K2,D(K3,C)))<br>知道过程是反过来的就行。<br>4. AES<br>明文长度是128比特，密钥长度可以是128、192、256比特。<br><strong>每1轮4个不同的步骤</strong></p>
+<p><strong>复杂数据结构特征</strong></p>
 <ul>
-<li>字节替换（使用S盒，分组逐一替换）</li>
-<li>行移位</li>
-<li>列混淆</li>
-<li>轮密钥加</li>
+<li>拥有一批预定义的静态数据</li>
+<li>数据结构的内容是可以动态改变的</li>
+<li>数据结构之间是嵌套的</li>
+<li>数据中存在多种数据关系(size of,point to,reference of,CRC)</li>
+<li>有意义的数据被编码或压缩，甚至用另一种文件格式来存储，这些格式的文件被挖掘出来越来越多的漏洞。</li>
 </ul>
-<ol start="5">
-<li>随机数与伪随机数<br>随机数</li>
-</ol>
+<p><strong>Smart Fuzz应运而生</strong></p>
 <ul>
-<li>随机性、不可预测性。</li>
+<li>面向逻辑(Logic Oriented Fuzzing)</li>
 </ul>
-<p><strong>伪随机数生成方法</strong></p>
+<p><strong>测试目标是解析文件的程序逻辑，而不是文件本身。</strong><br>明确测试用例正在试探的是哪一层的解析逻辑，即明确测试“深度”以及畸形数据的测试“粒度”。<br>生成畸形数据时可以具有针对性的仅仅改动样本文件的特定位置，尽量不破坏其他数据依赖关系，这样使得改动的数据能够传递到测试的解析深，而不会在上层的解析器中被破坏。</p>
 <ul>
-<li>真随机数发生器</li>
-<li>伪随机数生成器</li>
-<li>伪随机函数</li>
+<li>面向数据类型(Data Type Oriented Fuzzing)</li>
 </ul>
-<p>常用密码算法创造伪随机函数</p>
+<p><strong>面向数据类型：测试中可以生成的数据。</strong><br>算术型：包括以HEX、ASCII、Unicode、Raw格式存在的各种数值。<br>指针型：包括Null指针、合法/非法的内存指针等。<br>字符串型：包括超长字符串、缺少终止符(0x00)的字符串等。<br>特殊字符：包括#，@，’，&lt;,&gt;,/,,../等等。<br>面向数据类型测试是指能够识别不同的数据类型，并且能够针对目标数据的类型按照不同规则来生成畸形数据。<br>跟Blind Fuzz相比，这种方法产生的畸形数据通常都是有效的，能够大大减少无效的畸形文件。</p>
 <ul>
-<li>对称的分组密码</li>
-<li>不对称的密码</li>
-<li>散列函数和消息认证码</li>
+<li>基于样本(Sample Based Fuzzing)</li>
 </ul>
-<ol start="6">
-<li>流密码和RC4</li>
-</ol>
-<p><strong>设计流密码考虑因素</strong></p>
+<p><strong>测试前首先构造一个合法的样本文件（模版文件），这时样本文件里所有数据结构和逻辑必然都是合法的。</strong><br>以这个文件为模板，每次只改动一小部分数据和逻辑来生成畸形文件，这种方法也叫做“变异”(Mutation)。<br>对于复杂文件来说，以现成的样本文件为基础进行畸形数据变异来生成畸形文件的方法要比上面两种的难度要小很多，也更容易实现。<br>漏报：不能测试样本文件里没有包含的数据结构。<br>为了提高测试质量，就要求在测试前构造一个能够包含几乎所有数据结构的文件（比如文字、图像、视频、声音、版权信息等数据）来作为样本。<br>2. 协议模糊测试<br><strong>协议：网络通信（双方或多方）的约定，网络系统的核心灵魂。</strong></p>
+<blockquote>
+<p>多数网络协议细节未公开</p>
+</blockquote>
+<p>多种类型的漏洞出现，如拒绝服务、缓冲区溢出、格式化字符串<br>协议解析的软件通常较复杂，需要反复进行数据的读取和处理。<br><strong>协议逆向工程</strong></p>
 <ul>
-<li>加密序列有长周期</li>
-<li>密钥流尽可能接近真随机数的性质</li>
-<li>伪随机数生成器的输出受输入密钥值控制</li>
+<li>Network Trace，利用网络流量来推测网络协议。</li>
+<li>Tainted Data，对实现网络协议的服务器程序进行二进制的动态跟踪分析，通过跟踪二进制文件对报文的处理流程对报文进行解析。以动态污点分析技术为基础。</li>
 </ul>
-<p><strong>RC4算法</strong><br>用1–256个字节(8-2048位)的可变长度密钥初始化一个256个字节的状态向量S，S的元素记为[1],S[2],…,S[255]，从始至终置换后的S包含从0到255的所有8位数。对于加密和解密，字节k是从S的255个元素中按一种系统化的方式选出的一个元素生成的。每生成一个k的值，S中的元素个体就被重新置换一次。<br>7. 分组密码工作模式<br><img src="../%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/3.jpg"><br>问：若各中工作模式传输出现错误（错误1个比特），则会影响整体多长？<br>问：5种分组密码的工作模式中，哪几种适合用于流密码中？</p>
-<h2 id="公钥密码和消息认证"><a href="#公钥密码和消息认证" class="headerlink" title="公钥密码和消息认证"></a>公钥密码和消息认证</h2><ol>
-<li>MAC的定义</li>
-</ol>
-<p>一种认证技术利用私钥产生一小块数据，称之为消息认证码。保证了数据的完整性和真实性。还可能保证时效性。<br>很多算法都可以生成MAC，比如DES。<br>MAC的一种替代方法是使用单向散列函数，可接受变长的消息M作为输入，生成定长的消息摘要H（M）作为输出。消息摘要随消息一起以可信的形式传送。<br>2. 安全散列函数<br><strong>要求</strong></p>
+<p><strong>FTP协议模糊测试</strong></p>
 <ul>
-<li>输入长度可变</li>
-<li>输出长度固定</li>
-<li>效率高</li>
-<li>抗原像攻击（单向性）</li>
-<li>抗第二原像攻击（抗弱碰撞性）</li>
-<li>抗碰撞攻击（抗强碰撞性）</li>
-<li>伪随机性</li>
+<li>File Transfer Protocol，基于TCP，其工作模式采用客户端/服务器的模式，也就是C/S模式。</li>
+<li>客户连接FTP服务过程：建立连接、传送数据和释放连接。</li>
+<li>基本原理就是通过对FTP协议中的命令及命令参数进行脏数据替换，构造畸形的FTP命令并发送给被测试FTP服务程序。</li>
 </ul>
 <ol start="3">
-<li>SHA安全散列函数</li>
-</ol>
-<p>SHA-1产生160位的Hash值。SHA-2包括SHA-224、SHA-256、SHA-384、SHA-512。SHA基于散列函数MD4。<br>SHA-512的输入消息以1024位的分组为单位进行处理。<br>4. 消息认证码</p>
-<ul>
-<li>HMAC（基于嵌入式散列函数，如SHA-1）</li>
-<li>CMAC（基于分组密码算法）</li>
-</ul>
-<ol start="5">
-<li>公钥密码原理</li>
-</ol>
-<p><strong>公钥密码方案组成部分</strong></p>
-<ul>
-<li>明文</li>
-<li>密文</li>
-<li>加密算法</li>
-<li>解密算法</li>
-<li>公钥和私钥</li>
-</ul>
-<ol start="6">
-<li>公钥密码系统的应用</li>
+<li>组件模糊测试</li>
 </ol>
 <ul>
-<li>加密/解密（加解密消息）</li>
-<li>数字签名（用私钥签名，公钥验证签名）</li>
-<li>密钥交换（例如会话密钥）</li>
-</ul>
-<ol start="7">
-<li>公钥密码RSA和DH</li>
-</ol>
-<p><strong>RSA</strong><br>RSA 的安全基础是大整数分解的困难性，公钥密码体制的安全基础是单向陷门函数。</p>
-<ul>
-<li>密钥生成阶段</li>
-</ul>
-<p>n=p*q（p，q是两个互素的大数）<br>不需要使用到n，需要用到n的欧拉函数t，自己设定的与欧拉函数t互素的数d作为公钥，生成的与此设定的数d互逆的数e为私钥。<br>公钥为（d，n）<br>私钥为（e，n）<br>将p和q销毁</p>
-<ul>
-<li>消息加密和解密阶段</li>
-</ul>
-<p>消息M<br>加密后得到C=M^d(mod n)<br>解密后得到M=C^e(mod n)</p>
-<ul>
-<li>手动计算难点</li>
-</ul>
-<p>大数的模幂运算、求模逆运算。<br><strong>DH</strong><br>存在中间人攻击。第三者分别与两方进行密钥共享，注意这个密钥共享共享的密钥是对称钥。即计算出来的密钥是同一个密钥。之后两方加密和解密都用这个密钥。</p>
-<ul>
-<li>前提</li>
-</ul>
-<p>双方共享一个素数q和a，a &lt; q，q是一个本原根。（a是q的本原根）</p>
-<ul>
-<li>过程</li>
-</ul>
-<p>利用了求离散对数难的原理，素数a作为底，双方用私钥利用模（q）指数生成公钥，传输公钥。<br>双方再用公钥作为底，指数为各自的私钥，计算得到的是双方协商出来的对称钥。</p>
-<ul>
-<li>中间人攻击</li>
-</ul>
-<p>中间人攻击相当于两步DH过程，与A协商一个密钥m，与B协商一个密钥n。同时与A、B交流，达到攻击的效果。<br>8. 数字签名标准DSS</p>
-<h2 id="密钥分配和用户认证"><a href="#密钥分配和用户认证" class="headerlink" title="密钥分配和用户认证"></a>密钥分配和用户认证</h2><ol>
-<li>密钥类型</li>
-</ol>
-<p><strong>基本密钥 Base Key</strong><br>又称初始密钥、用户密钥，是由用户选定或由系统分配给用户，在较长时间（相对于会话密钥）内由一对用户所专用的密钥。<br><strong>会话密钥 Session Key</strong><br>两个通信终端用户在一次通话或交换数据时使用的密钥。<br><strong>密钥加密密钥 Key Encrypting Key</strong><br>用于对会话密钥或文件密钥进行加密时采用的密钥，又称辅助二级密钥(Secondary Key)或密钥传送密钥(key Transport key)。<br><strong>主机主密钥 Host Master Key</strong><br>是对密钥加密密钥进行加密的密钥，存于主机处理器中。<br>在公钥体制下还有公开密钥、秘密密钥、签名密钥之分。<br>2. Kerberos<br>KDC—-密钥分发中心<br><strong>两种票据</strong></p>
-<ul>
-<li>票据授权票据 （Ticket granting ticket）</li>
-</ul>
-<p>票据授权票据由AS发放<br>Tickettgs 在用户登录时向AS申请一次，可多次重复使用</p>
-<ul>
-<li>服务授权票据（Service granting ticket）</li>
-</ul>
-<p>是客户访问应用服务器时需要提供的票据<br>用TicketV表示访问应用服务器V的票据<br><img src="../%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/4.jpg"></p>
-<ol start="3">
-<li>公钥证书X.509</li>
-</ol>
-<p>X.509的核心是与每个用户相关的公钥证书。这些用户证书由一些可行的签证机构（CA）创建并被CA或用户放入目录服务器中。目录服务器本身不创建公钥和证书，仅为用户获得证书提供一种简单的存取方式。<br><strong>证书链</strong><br><strong>证书撤销列表CRL</strong><br><strong>PKIX模型</strong></p>
-<ul>
-<li>端实体</li>
-<li>认证中心</li>
-<li>注册中心</li>
-<li>CRL发放者</li>
-<li>存储库</li>
-</ul>
-<h2 id="网络访问控制和云安全"><a href="#网络访问控制和云安全" class="headerlink" title="网络访问控制和云安全"></a>网络访问控制和云安全</h2><ol>
-<li>网络访问强制措施</li>
-</ol>
-<ul>
-<li>IEEE 802.1X</li>
-</ul>
-<p>这是一个链接层协议，在一个端口被分配IP之前必须强制进行认证。IEEE 802.1X在认证过程中使用了可扩展认证协议。</p>
-<ul>
-<li>虚拟局域网(VLAN)</li>
-</ul>
-<p>由互连的局域网组成的企业网络被逻辑划分为许多VLAN，NAC系统根据安全需求，决定将网络中的哪一个虚拟局域网分配给用户。</p>
-<ul>
-<li>防火墙</li>
-</ul>
-<p>防火墙允许或者拒绝主机与外部的网络数据流，提供一种基于安全策略的网络访问控制。</p>
-<ul>
-<li>动态主机配置协议(DHCP)管理</li>
-</ul>
-<p>DHCP为主机动态分配IP地址，通过IP地址的控制分配，实现网络的访问控制。</p>
-<ul>
-<li>PPPoE认证</li>
-<li>Web portal认证</li>
-</ul>
-<ol start="2">
-<li>可扩展认证协议结构(EAP)<br><img src="../%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/5.jpg"></li>
-<li>基于端口的网络访问控制<br><img src="../%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/6.jpg"></li>
-</ol>
-<h2 id="传输层安全"><a href="#传输层安全" class="headerlink" title="传输层安全"></a>传输层安全</h2><ol>
-<li>SSL体系结构<br><img src="../%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/7.jpg"><br>SSL协议中重要概念：SSL会话、SSL连接。<br>SSL中定义的3个较高层协议分别是：握手协议、修改密码规范协议、警报协议。</li>
-</ol>
-<ul>
-<li>SSL记录协议</li>
-</ul>
-<p>对各种更高层协议提供基本的安全服务。<br>保证了机密性和完整性。<br>步骤：数据分块、压缩、加MAC、加密、添加SSL记录头、作为1个TCP分组发送。</p>
-<ul>
-<li>SSL握手协议</li>
-</ul>
-<p><strong>4步握手</strong></p>
-<ul>
-<li>客户端请求并且相互协商协议版本和随机数等信息</li>
-<li>服务器发送证书</li>
-<li>客户端发送证书</li>
-<li>更改密码套件生成主密钥</li>
-</ul>
-<ol start="2">
-<li>HTTPS</li>
-</ol>
-<p><strong>通信为以下元素加密</strong></p>
-<ul>
-<li>要求文件的URL</li>
-<li>文件的内容</li>
-<li>浏览器表单的内容</li>
-<li>浏览器与服务器的Cookie</li>
-<li>HTTP报头的内容</li>
-</ul>
-<p><img src="../%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/8.jpg"></p>
-<h2 id="无线网络安全"><a href="#无线网络安全" class="headerlink" title="无线网络安全"></a>无线网络安全</h2><ol>
-<li>无线网络安全常见威胁<br>偶然连接、恶意连接、身份盗窃、中间人攻击、拒绝服务、网络注入、Ad hoc网络。</li>
-<li>802.11网络组成与架构模型<br><img src="../%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/9.jpg"></li>
-<li>IEEE 802.11i操作阶段</li>
-</ol>
-<p><strong>分为5个阶段</strong></p>
-<ul>
-<li>发现</li>
-<li>认证</li>
-<li>密钥管理</li>
-<li>数据传输</li>
-<li>终止连接</li>
-</ul>
-<p><strong>所有阶段</strong><br><img src="../%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/10.jpg"><br><strong>发现和认证阶段</strong><br><img src="../%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/11.jpg"><br><strong>密钥管理阶段</strong><br>在密钥管理阶段期间，各种加密密钥被生成并分发给各个STA。<br>有两种类型的密钥</p>
-<ul>
-<li>用于STA和AP间通信的成对密钥</li>
-<li>用于组播通信的群组密钥</li>
-</ul>
-<p><strong>各种密钥</strong></p>
-<ul>
-<li>AAAK，根密钥，最初始的密钥，认证、计数、授权并且生成其他密钥功能。</li>
-<li>PSK，预分享密钥，生成PMK。</li>
-<li>PMK，成对主密钥，生成PTK。</li>
-<li>GMK，群组主密钥，生成GTK。</li>
-<li>PTK，成对临时密钥，加密。</li>
-<li>GTK，群组成对密钥，加密。</li>
-<li>TK，临时密钥，单播用户信息加密。</li>
-<li>MIC，消息完整码密钥，保证完整性。</li>
-<li>WEP，有线等效保密密钥，交换密钥。</li>
-</ul>
-<p><strong>成对密钥发布阶段</strong><br>被称为4次握手，4个组成部分如下。<br><img src="../%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/12.jpg"></p>
-<ul>
-<li>访问接入点—-&gt;站点，发送MAC地址和1个随机数</li>
-<li>站点—-&gt;访问接入点，站点用2个随机数和MAC地址和成对组密钥生成成对临时密钥，包含消息完整性字段。令访问接入点也生成此承兑临时密钥。</li>
-<li>访问接入点—-&gt;站点，访问接入点使用密钥重发第一次相同内容，包含消息完整性字段。</li>
-<li>站点—-&gt;访问接入点，确认消息，包含消息完整性字段。</li>
-</ul>
-<h2 id="电子邮件安全"><a href="#电子邮件安全" class="headerlink" title="电子邮件安全"></a>电子邮件安全</h2><ol>
-<li>PGP的操作<br>认证（数字签名）、保密（消息加密）、压缩和电子邮件兼容性。</li>
-<li>S/MIME<br>基于RSA的安全性基础。</li>
-<li>PGP为什么在压缩前生成签名？<br>顺序：签名—-压缩—-加密<br>压缩对邮件传输或存储都有节省空间的好处。</li>
-</ol>
-<p><strong>签名后压缩的原因</strong><br>不需要为检验签名而保留压缩版本的消息。<br>为了检验而再做压缩不能保证一致性，压缩算法的不同实现版本可能会产生不同的结果。<br><strong>压缩之后再做加密的原因</strong><br>压缩后的消息其冗余小，增加密码分析的难度<br>若先加密，则压缩难以见效<br><strong>E-mail兼容性</strong><br>PGP处理后的消息，部分或者全部是加密后的消息流，为任意的8位字节。某些邮件系统只允许ASC字符，所以PGP提供了转换到ASC格式的功能。采用了Radix-64转换方案。</p>
-<h2 id="IP安全"><a href="#IP安全" class="headerlink" title="IP安全"></a>IP安全</h2><ol>
-<li>IP协议<br>IP是TCP/IP协议族中至关重要的组成部分, 但它提供的是一种不可靠、无连接的的数据报传输服务。</li>
-</ol>
-<ul>
-<li>不可靠（unreliable)</li>
-</ul>
-<p>不能保证一个IP数据报成功地到达其目的地。错误处理办法：扔掉该数据报，向其发送着传送一个ICMP消息。</p>
-<ul>
-<li>无连接（connectionless）</li>
-</ul>
-<p>IP并不维护关于连续发送的数据报的任何状态信息。每个数据报单独处理，在传送过程中可能出现错序。<br>2. IPsec的原理<br><img src="../%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/13.jpg"><br>3. IPSec的规范<br>IPSec包括三种功能：认证、机密性和密钥管理。<br><strong>包含以下多种规范（未详细列出）</strong></p>
-<ul>
-<li>认证报头(AH) RFC4302：用于提供消息认证的扩展头。 </li>
-<li>封装安全载荷(ESP) RFC4303 ：ESP包含了一个封装的用来提供加密或者机密和认证的结合。</li>
-<li>因特网密钥交换(IKE) RFC4306：用于IPSec的密钥交换方案。</li>
+<li>组件提取</li>
+<li>组件接口分析</li>
+<li>构造测试用例</li>
+<li>测试驱动、异常跟踪</li>
+<li>结果分析</li>
 </ul>
 <ol start="4">
-<li>传输模式和隧道模式</li>
+<li>Web模糊测试</li>
 </ol>
+<p><strong>特殊形式的网络协议模糊测试，测试方法如下</strong></p>
 <ul>
-<li>传输模式Transport Mode</li>
-</ul>
-<p>用于两个主机之间的端到端通信，传输模式为上层协议提供保护，保护扩充到IP分组的有效载荷，用于两个主机之间的端到端通信。传输方式ESP对有效载荷加密并可选认证；AH认证IP有效载荷和IP首部的选中部分。</p>
-<ul>
-<li>隧道模式Tunnel Mode</li>
-</ul>
-<p>适用于当SA的一端或两端是安全网关，隧道模式对整个IP分组提供保护。原始的分组加安全域被当做一个新IP分组的载荷，并拥有一个新的外部IP报头, 通过“隧道”从IP网络的一端传输到另一端。适用于当SA的一端或两端是安全网关, 例如实现了IPSec的防火墙或路由器的情况，防火墙之后的网络主机可以不用实现IPSec而参加安全通信。<br>隧道模式中, ESP加密和认证(可选)整个内部IP包, AH认证整个内部IP包和外部IP报头中的选中部分。<br><img src="../%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/14.jpg"><br><img src="../%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/15.jpg"><br>5. 安全关联<br><img src="../%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/16.jpg"><br>安全关联SA是在发送者和的接收者之间的一种单向关系，如果需要一个对等的关系用于双向的安全交换，就要用两个安全关联。提供给一个SA的安全服务用于AH或ESP，但不能同时用于两者。<br><strong>安全关联由三个参数标识</strong></p>
-<ul>
-<li>安全参数索引SPI：SPI加载在AH和ESP的首部，使接收系统能够选择SA来处理接收的分组。</li>
-<li>IP目的地址：SA的目的地址，端用户或网络。</li>
-<li>安全协议标识符：标识该关联是否AH或ESP安全关联。</li>
-</ul>
-<ol start="6">
-<li>IPSec ESP Header格式</li>
-</ol>
-<p><img src="../%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/17.jpg"><br><img src="../%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/18.jpg"><br><strong>填充域有如下几个作用</strong></p>
-<ul>
-<li>填充域用于把明文(包括载荷数据、填充、填充长度、邻接报头域)扩展到需要的长度 (如分组加密要求明文是分组长度的整数倍) 。</li>
-<li>ESP格式要求填充长度和邻接报头域为32比特的字，密文也是32比特的整数倍，填充域用来保证这样的排列。</li>
-<li>增加额外的填充能隐藏载荷的实际长度，从而提供部分流量的保密。</li>
-</ul>
-<ol start="7">
-<li>窗口与重放攻击检测</li>
-</ol>
-<ul>
-<li>重复的接收经过认证的IP包可能会以某种方式中断服务或产生一些不希望出现的结果。</li>
-<li>序列号能阻止重放攻击。每建立一个新的SA，发送方把序列号计数器的初始值设为0，每次在SA上发送一个包，则发送方增加计数器的值。</li>
-<li>IP提供无连接且不可靠的分组投递服务，不能保证分组能按照顺序传输，也不能保证无丢失。IPSec规定接收方应该实现一个大小为W的窗口(W的默认值为64)。</li>
-</ul>
-<p><img src="../%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/19.jpg"><br>8. 密钥确定协议<br>基于DH交换<br>DH交换的缺陷</p>
-<ul>
-<li>没有身份标识和认证</li>
-<li>易受中间人攻击</li>
-<li>算法的模指运算代价高，易受阻塞Clogging攻击（Clogging攻击是一类面对公钥密码系统的DoS攻击）。</li>
-</ul>
-<p><strong>IKE密钥确定的特性</strong></p>
-<ul>
-<li>使用Cookie机制来抵御阻塞Clogging攻击</li>
-<li>允许协商公共参数，即DH中的公共参数</li>
-<li>使用随机数防止重放攻击</li>
-<li>可以交换DH的公钥值</li>
-<li>对DH交换进行认证，防止中间人攻击</li>
-</ul>
-<p><img src="../%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/20.jpg"><br>9. IPSec的优点和路由应用<br><strong>IPSec的优点</strong></p>
-<ul>
-<li>提供强大的安全性，应用于防火墙和路由器。</li>
-<li>IPSec在传输层以下，对所有的应用透明。</li>
-<li>IPSec对终端用户透明。</li>
-<li>必要时可以为单个用户提供安全性。</li>
-</ul>
-<p><strong>路由选择应用，IPSec保证</strong></p>
-<ul>
-<li>路由器的通告(新的路由器通告它的存在)来自被认可的路由器。</li>
-<li>邻站通告(一个路由器尝试与另一个路由选择域的一台路由器建立或维护邻站关系)来自被认可的路由器。</li>
-<li>重定向报文来自于发送包的初始路由器。</li>
-<li>路由选择更新不会被假造。</li>
-</ul>
-<h2 id="恶意软件"><a href="#恶意软件" class="headerlink" title="恶意软件"></a>恶意软件</h2><ol>
-<li>病毒</li>
-</ol>
-<p><strong>组成部分（1或多或重复包含）</strong></p>
-<ul>
-<li>感染机制</li>
-<li>触发</li>
-<li>载荷</li>
-</ul>
-<p><strong>生命周期</strong></p>
-<ul>
-<li>休眠阶段</li>
-<li>传播阶段</li>
-<li>触发阶段</li>
-<li>执行阶段</li>
-</ul>
-<p><strong>按目标分类</strong></p>
-<ul>
-<li>引导扇区感染病毒</li>
-<li>文件感染病毒</li>
-<li>宏病毒</li>
-<li>混合体病毒</li>
-</ul>
-<p><strong>按隐藏策略分类</strong></p>
-<ul>
-<li>加密病毒</li>
-<li>隐形飞机式病毒</li>
-<li>多态病毒</li>
-<li>变形病毒</li>
-</ul>
-<p><strong>分布式拒绝服务攻击DDoS</strong></p>
-<h2 id="入侵者"><a href="#入侵者" class="headerlink" title="入侵者"></a>入侵者</h2><ol>
-<li>常用的入侵检测方法</li>
-</ol>
-<p>统计异常检测，定义通常的或期望的行为。</p>
-<ul>
-<li>阈值检测</li>
-<li>基于行为曲线</li>
-</ul>
-<p>基于规则的检测，定义合适的行为。</p>
-<ul>
+<li>设置目标环境</li>
+<li>输入</li>
+<li>GET、POST、HEAD 、PUT 、DELETE 、TRACE 、CONNECT 、 OPTIONS</li>
+<li>请求URL</li>
 <li>异常检测</li>
-<li>渗透检测</li>
 </ul>
-<h2 id="防火墙"><a href="#防火墙" class="headerlink" title="防火墙"></a>防火墙</h2><ol>
-<li>防火墙类型</li>
+<p><strong>主要的Web漏洞</strong></p>
+<p><img src="../%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E6%A8%A1%E7%B3%8A%E6%B5%8B%E8%AF%95/4.jpg"></p>
+<p><strong>Web模糊测试异常检测</strong><br>HTTP 状态码、Web服务器错误消息、中断连接、日志文件、时间日志、调试器。</p>
+<h3 id="XSS模糊测试"><a href="#XSS模糊测试" class="headerlink" title="XSS模糊测试"></a>XSS模糊测试</h3><p>对于XSS的漏洞挖掘过程，其实就是一个使用Payload不断测试和调整再测试的过程，这个过程我们把它叫做Fuzzing。</p>
+<p>同样是Fuzzing，有些人挖洞比较高效，有些人却不那么容易挖出漏洞，除了掌握的技术之外，比如编码的绕过处理等，还包含一些技巧性的东西，掌握一些技巧和规律，可以使得挖洞会更加从容。</p>
+<p>Fuzzing（模糊测试）是挖掘漏洞最常用的手段之一，不止是XSS，应该可以说Fuzzing可以用于大部分类型的漏洞挖掘。通俗可以把这种方式理解为不断尝试的过程。</p>
+<ol>
+<li>XSS模糊测试关键</li>
 </ol>
 <ul>
-<li>包过滤防火墙</li>
-<li>状态检测防火墙</li>
-<li>链路层网关</li>
-<li>应用层网关</li>
+<li>检测输入点<br>寻找数据入口，比如说GET/POST数据，或者Header头部里的UA/Referer/Cookie，再或者URL路径等等，这些都可以成为输入入口<br>转换为比较形象点的说法，比如看到一个搜索框，你可能会在搜索框里提交关键词进行搜索，那么这里可能就发生了一个GET或者POST请求，这里其实就是一个输入点。</li>
+<li>潜在注入点检测：判断输入点是否可以成功把数据注入到页面内容。</li>
 </ul>
+<p>对于提交数据内容但是不输出到页面的输入点是没有必要进行Fuzzing的，因为即使可以提交攻击代码，也不会产生XSS。</p>
+<p>在潜在注入点的检测通常使用的是一个随机字符串，比如随机6位数字，再判断这6位数字是否返回输出在页面，以此来进行判断。</p>
+<p>为什么不直接使用Payload进行判断呢？因为Payload里包含了攻击代码，通常很多应用都有防火墙或者过滤机制，Payload中的关键词会被拦截导致提交失败或者不会返回输出在页面，但这种情况不代表不能XSS，因为有可能只是Payload不够好，没有绕过过滤或者其他安全机制，所以采用无害的随机数字字符就可以避免这种情况产生。</p>
+<p>先验证可注入，再调整Payload去绕过过滤；而随机的目的在于不希望固定字符成为XSS防御黑名单里的关键词。</p>
+<ul>
+<li>生成Payload和进行攻击验证：Payload的好坏决定了攻击是否可以成功。</li>
+</ul>
+<p>而对于不同情况的注入点，需要使用的Payload也是不同的，比如，注入的位置在标签属性中还是标签事件中，使用的Payload是不同的，<br>标签属性中：如<code>&lt;a href=&quot;注入位置&quot;&gt;test&lt;/a&gt;，Payload：&quot;&gt;&lt;/a&gt;&lt;script&gt;alert(0)&lt;/script&gt;&lt;a  href=&quot;</code><br>标签事件中：<code>&lt;img href=&quot;a.jpg&quot; onload=&quot;注入位置&quot;&gt;, Payload：alert(0)</code></p>
+<blockquote>
+<p>Payload的生成就是一个不断Fuzzing和不断调整的过程，根据注入位置上下文代码的结构、内容以及应用过滤机制等不断调整和不断提交测试的过程。</p>
+</blockquote>
+<ol start="2">
+<li>XSS模糊测试一些技巧</li>
+</ol>
+<p>类似QQ、微信这种一号多用的情况，可以想象你的微信昵称、QQ昵称或者签名等，在不同的应用、网页中登录，你的昵称就会在不同的地方显示，这些昵称在微信、QQ本身不会导致问题的产生，但到了其他页面呢？也许就会导致问题的产生。</p>
+<p>登录和注册是大部分网站的必备功能，当你在未登录状态下访问一些需要需要登录态的页面，比如个人中心，会自动跳转到登录或者注册页面要求你登录，然后这个时候的登录URL其实会带有一个跳转URL，这是为了方便你登录后直接跳转到你原来访问的页面，是一个比较好的用户体验的设计。由于功能设计上的缺陷，没有对跳转的URL进行判断或者判断有问题，于是可以导致直接跳转到其他网站或者产生XSS。当然，不止是登录，注册功能也存在同样问题</p>
+<p>盲打：常规的XSS攻击是通过页面返回内容中JS攻击代码的生效与否来判断XSS的攻击是否成功；而对于一些网页功能，比如反馈，我们可以发现，不管你提交什么内容，返回的内容都是”感谢您的反馈”类似的语句，并不会根据你提交的内容而在页面中显示不同的内容，对于这样的内容提交点，就无法通过页面反馈判断攻击代码是否注入成功，那么就可以通过XSS盲打。</p>
+<p>XSS盲打一般通过XSS盲打平台，在XSS盲打平台建立项目，会生成项目攻击链接，实际上就是一个类似JS文件的访问链接，这个JS文件中其中至少包含一个功能，那就是向盲打平台发送GET/POST请求传输数据回来，比如Cookie，这样的话，类似在反馈页面提交的攻击代码一旦生效，就等于JS代码被执行，那么就会向盲打平台返回数据，那就说明攻击成功了；假如一直没有返回数据，那就说明提交的攻击代码没有执行或者执行出问题，也就证明攻击失败。</p>
+<p>类似于这样的功能，如果存在XSS，一般会在什么地方什么时候出发攻击代码呢？管理人员在后台审核这些内容的时候，所以说一般XSS盲打如果成功，往往可以获得对应功能管理后台的地址以及管理员的Cookie，假如管理后台没有做访问的限制，就能用对应管理员的Cookie登录上去</p>
+<p>不管是来自哪里的内容，都应该有自己的过滤机制，而不能完全的信任其实总结一句话就是：任何的输入都是有害的。</p>
 
                 
             </div>
@@ -897,8 +659,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="../../../../tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">
-                                    <span class="chip bg-color">网络安全</span>
+                                <a href="../../../../tags/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8/">
+                                    <span class="chip bg-color">软件安全</span>
                                 </a>
                             
                         </div>
@@ -945,6 +707,55 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
+                <a href="../%E4%BF%A1%E6%81%AF%E8%AE%BA%E6%9C%9F%E6%9C%AB/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="../../../../medias/featureimages/8.jpg" class="responsive-img" alt="信息论期末">
+                        
+                        <span class="card-title">信息论期末</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            这学期选修了信息论，觉得这门课挺有意思，主要还比较有趣，现在到了期末，虽然平时没怎么上课，但是一些知识还是需要总结的。希望自己能够顾得来。
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-06-27
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="../../../../categories/%E5%A4%A7%E4%B8%89%E4%B8%8B%E6%9C%9F%E6%9C%AB%E8%80%83%E8%AF%95/" class="post-category">
+                                    大三下期末考试
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="../../../../tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/">
+                        <span class="chip bg-color">信息论</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
                 <a href="../../25/%E4%BF%A1%E6%81%AF%E4%B8%8E%E5%86%85%E5%AE%B9%E5%AE%89%E5%85%A8/">
                     <div class="card-image">
                         
@@ -960,9 +771,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-06-25
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-06-25
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -980,54 +791,6 @@
                     
                     <a href="../../../../tags/%E4%BF%A1%E6%81%AF%E4%B8%8E%E5%86%85%E5%AE%B9%E5%AE%89%E5%85%A8/">
                         <span class="chip bg-color">信息与内容安全</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="../%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E9%AB%98%E7%BA%A7%E5%86%85%E5%AD%98%E8%AE%BF%E9%97%AE/">
-                    <div class="card-image">
-                        
-                        <img src="../../../../medias/banner/1.jpg" class="responsive-img" alt="软件安全高级内存访问漏洞">
-                        
-                        <span class="card-title">软件安全高级内存访问漏洞</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            后天就要考试了，听学长说考试挺简单，但是也不能掉以轻心。自己想要的是更高的分数，学习更多的知识！
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-06-23
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="../../../../categories/%E5%A4%A7%E4%B8%89%E4%B8%8B%E6%9C%9F%E6%9C%AB%E8%80%83%E8%AF%95/" class="post-category">
-                                    大三下期末考试
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="../../../../tags/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8/">
-                        <span class="chip bg-color">软件安全</span>
                     </a>
                     
                 </div>

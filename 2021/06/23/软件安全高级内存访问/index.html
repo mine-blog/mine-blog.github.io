@@ -4,7 +4,7 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="软件安全高级内存访问, try best">
+    <meta name="keywords" content="软件安全高级内存访问漏洞, try best">
     <meta name="description" content="兴趣所致，希望在生活中有无尽的快乐！">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -27,7 +27,7 @@
 </script>
 
 
-    <title>软件安全高级内存访问 | BURAN</title>
+    <title>软件安全高级内存访问漏洞 | BURAN</title>
     <link rel="icon" type="image/png" href="../../../../favicon.png">
 
     <link rel="stylesheet" type="text/css" href="../../../../libs/awesome/css/all.css">
@@ -282,7 +282,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">软件安全高级内存访问</h1>
+                    <h1 class="description center-align post-title">软件安全高级内存访问漏洞</h1>
                 </div>
             </div>
         </div>
@@ -433,21 +433,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-06-23
+                    2021-06-27
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    0
+                    1.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    4 分
                 </div>
                 
 
@@ -470,7 +470,106 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <p><strong>主体结构是这样的</strong></p>
+<ul>
+<li>高级堆内存访问漏洞<ul>
+<li>双重释放（double-free）</li>
+<li>释放重引用（use-after-free）</li>
+</ul>
+</li>
+<li>一些其他的Web安全漏洞<ul>
+<li>跨站脚本（XSS）</li>
+<li>跨站请求伪造（CSFR）</li>
+</ul>
+</li>
+</ul>
+<h2 id="回顾堆块的分配与释放机制"><a href="#回顾堆块的分配与释放机制" class="headerlink" title="回顾堆块的分配与释放机制"></a>回顾堆块的分配与释放机制</h2><p><img src="../%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E9%AB%98%E7%BA%A7%E5%86%85%E5%AD%98%E8%AE%BF%E9%97%AE/1.jpg"></p>
+<ul>
+<li>堆空间的管理本质上是对bin链表的维护。</li>
+<li>堆块释放后，原本指向它的指针并不自动销毁。</li>
+<li>结果：指针悬空（指向未使用的内存，但仍然可以引用该空间）。</li>
+</ul>
+<blockquote>
+<p>堆空间由用户而不是系统管理，所以指针不自动销毁。所以c 指针是不安全的。</p>
+</blockquote>
+<h2 id="双重释放漏洞"><a href="#双重释放漏洞" class="headerlink" title="双重释放漏洞"></a>双重释放漏洞</h2><p><strong>那么，如果尝试释放一个悬空指针所引用的内存，会如何？</strong><br>free()函数中对此的规定：“undefined behavior”。<br>问题的爆发点：堆块合并和unlink。<br><strong>示例</strong></p>
+<ol>
+<li>一个空的bin表项与一个对应尺寸的堆块P（已分配）看上去就像这样。</li>
+</ol>
+<p><img src="../%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E9%AB%98%E7%BA%A7%E5%86%85%E5%AD%98%E8%AE%BF%E9%97%AE/2.jpg"></p>
+<ol start="2">
+<li>当堆块P被释放，bin表项变成了这样。表示指针悬空，堆块的前向指针和后向指针都已经指向bin中。</li>
+</ol>
+<p><img src="../%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E9%AB%98%E7%BA%A7%E5%86%85%E5%AD%98%E8%AE%BF%E9%97%AE/3.jpg"><br>3. 如果再次释放P，则free()的原理使得bin表项发生了下面的情况。</p>
+<p>释放P对应合并和unlink，目前看来不是向后合并，而是向前合并，即将P的next chunk（P-&gt;FD）从链中摘除。被摘除的自己指针不动，前后块的指针修改。<br>P-&gt;FD-&gt;FD-&gt;BK = P-&gt;FD-&gt;BK 即 <strong>P-&gt;BK = P</strong><br>P-&gt;FD-&gt;BK-&gt;FD = P-&gt;FD-&gt;FD 即 <strong>P-&gt;FD = P</strong></p>
+<blockquote>
+<p>分配P就是要把P前后块链起来，也就是要让P-&gt;fd-&gt;bk = P-&gt;bk, P-&gt;bk-&gt;fd = P-&gt;fd</p>
+</blockquote>
+<p><img src="../%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E9%AB%98%E7%BA%A7%E5%86%85%E5%AD%98%E8%AE%BF%E9%97%AE/4.jpg"></p>
+<ol start="4">
+<li>此时，如果系统试图将堆块P分配出去，就可能导致分配后fd和bk会被用户数据覆盖。</li>
+</ol>
+<p><img src="../%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E9%AB%98%E7%BA%A7%E5%86%85%E5%AD%98%E8%AE%BF%E9%97%AE/5.jpg"></p>
+<ol start="5">
+<li>如果系统再次试图分配一个与P同样大小的块。就要把P的指针再改，此时P的fd和bk会影响到前后块中的地址信息。类似于前向合并漏洞，可以用来修改特定函数的入口地址。</li>
+</ol>
+<p><img src="../%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E9%AB%98%E7%BA%A7%E5%86%85%E5%AD%98%E8%AE%BF%E9%97%AE/6.jpg"></p>
+<ol start="6">
+<li>代码解释</li>
+</ol>
+<p><img src="../%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E9%AB%98%E7%BA%A7%E5%86%85%E5%AD%98%E8%AE%BF%E9%97%AE/7.jpg"></p>
+<p>第22行意思是把fd里面放 strcpy()地址-12。</p>
+<p>第23行意思是bk里面放shellcode地址,一个指针长度4字节。fd指针地址+4字节是bk指针地址。</p>
+<p>第24行再分配这个chunk，此时因为chunk被unlink，调用unlink函数。分配就是要把P前后块链起来，也就是要让, P-&gt;fd-&gt;bk = P-&gt;bk, P-&gt;bk-&gt;fd = P-&gt;fd。</p>
+<p>先是：shellcode地址赋给strcpy()地址-12+12，然后：strcpy()地址-12写入到shellcode地址-4。</p>
+<p>第25行strcpy()被调用时，调用shellcode。</p>
+<h2 id="双重释放重引用"><a href="#双重释放重引用" class="headerlink" title="双重释放重引用"></a>双重释放重引用</h2><p>双重释放可以认为是释放重引用漏洞的一个特例<br><strong>释放重引用漏洞的一般流程</strong></p>
+<ul>
+<li>申请一段空间，将其释放但并不将指针置为空（这个悬空指针记为p1）。</li>
+<li>申请空间p2，由于malloc分配的过程使得p2指向的空间为刚刚释放的p1指针的空间。</li>
+<li>构造恶意的数据将p2指向的内存空间布局好（即覆盖了p1中的数据）利用p1。</li>
+</ul>
+<ol>
+<li>释放冲引用与缓冲区溢出的结合<br>通过操作溢出后的指针形成释放重引用，代码本身并未出现释放重引用漏洞。</li>
+</ol>
+<p><strong>合法指针在溢出后越界指向空闲块，在此块被分配后就有两个指针指向它。</strong><br>2. 释放重引用的潜在后果<br>一般地，攻击会尝试<strong>劫持函数指针</strong>，造成<strong>不同指针引用同一内存区域</strong>。<br><img src="../%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E9%AB%98%E7%BA%A7%E5%86%85%E5%AD%98%E8%AE%BF%E9%97%AE/8.jpg"></p>
+<h2 id="跨站脚本"><a href="#跨站脚本" class="headerlink" title="跨站脚本"></a>跨站脚本</h2><ol>
+<li>原理：即由畸形输入的构造，使攻击方得以以访问者的身份在站点执行HTML代码。</li>
+<li>本质：是对HTML的注入攻击。</li>
+<li>主要分类</li>
+</ol>
+<ul>
+<li>反射型XSS</li>
+</ul>
+<p>它通过给别人发送带有恶意脚本代码参数的URL，当URL地址被打开时，特有的恶意代码参数被HTML解析、执行。它的特点是非持久化，必须用户点击带有特定参数的链接才能引起。非持久化，需要欺骗用户自己去点击链接才能触发XSS代码（服务器中没有这样的页面和内容），一般容易出现在搜索页面。</p>
+<ul>
+<li>存储型XSS</li>
+</ul>
+<p>持久化，代码是存储在服务器中的，如在个人信息或发表文章等地方，加入代码，如果没有过滤或过滤不严，那么这些代码将储存到服务器中，用户访问该页面的时候触发代码执行。这种XSS比较危险，容易造成蠕虫，盗窃cookie等。</p>
+<ul>
+<li>基于DOM的XSS</li>
+</ul>
+<h2 id="跨站请求伪造"><a href="#跨站请求伪造" class="headerlink" title="跨站请求伪造"></a>跨站请求伪造</h2><ol>
+<li>示例</li>
+</ol>
+<p><img src="../%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E9%AB%98%E7%BA%A7%E5%86%85%E5%AD%98%E8%AE%BF%E9%97%AE/9.jpg"></p>
+<ol start="2">
+<li>针对跨站脚本/请求伪造的防御措施</li>
+</ol>
+<ul>
+<li>浏览器/站点增加针对性的过滤机制<ul>
+<li>标签</li>
+<li>关键字</li>
+<li>特殊符号</li>
+</ul>
+</li>
+<li>在URL请求中引入伪随机数<ul>
+<li>类似SQL请求的随机化</li>
+</ul>
+</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>感觉学习过程是一个了解的阶段，并没有深入一个层次去知晓它，不过慢慢接受知识也是一个良性的过程。</p>
+
                 
             </div>
             <hr/>
@@ -765,7 +864,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">22.4k</span>
+                        class="white-color">27.3k</span>
             
             
             
