@@ -4,7 +4,7 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="信息论期末, try best">
+    <meta name="keywords" content="返回导向编程, try best">
     <meta name="description" content="兴趣所致，希望在生活中有无尽的快乐！">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -27,7 +27,7 @@
 </script>
 
 
-    <title>信息论期末 | BURAN</title>
+    <title>返回导向编程 | BURAN</title>
     <link rel="icon" type="image/png" href="../../../../favicon.png">
 
     <link rel="stylesheet" type="text/css" href="../../../../libs/awesome/css/all.css">
@@ -277,12 +277,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../medias/featureimages/8.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../medias/featureimages/20.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">信息论期末</h1>
+                    <h1 class="description center-align post-title">返回导向编程</h1>
                 </div>
             </div>
         </div>
@@ -401,8 +401,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="../../../../tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/">
-                                <span class="chip bg-color">信息论</span>
+                            <a href="../../../../tags/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8/">
+                                <span class="chip bg-color">软件安全</span>
                             </a>
                         
                     </div>
@@ -440,14 +440,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    95
+                    1.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    3 分
                 </div>
                 
 
@@ -470,27 +470,77 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>根据老师画的80分的知识点复习。</p>
-<ol>
-<li>熵的概念</li>
+                <p><strong>主题目录</strong></p>
+<ul>
+<li>栈溢出</li>
+<li>返回导向编程<ul>
+<li>动机</li>
+<li>前身</li>
+<li>原理</li>
+<li>图灵安全</li>
+</ul>
+</li>
+<li>地址空间随机化防护</li>
+</ul>
+<h2 id="栈的工作原理"><a href="#栈的工作原理" class="headerlink" title="栈的工作原理"></a>栈的工作原理</h2><ol>
+<li>简介</li>
 </ol>
-<p>离散集的平均自信息—-熵<br><img src="../%E4%BF%A1%E6%81%AF%E8%AE%BA%E6%9C%9F%E6%9C%AB/1.jpg"><br><img src="../%E4%BF%A1%E6%81%AF%E8%AE%BA%E6%9C%9F%E6%9C%AB/2.jpg"><br>熵的性质：对称性、非负性、确定性、扩展性。<br><img src="../%E4%BF%A1%E6%81%AF%E8%AE%BA%E6%9C%9F%E6%9C%AB/3.jpg"></p>
+<p>调用函数将在栈上创建一个结构化空间，称为栈帧。<br>锚点：函数被调用时的栈指针位置，可用于对函数的局部数据寻址/返回到调用者。</p>
+<p><img src="../%E8%BF%94%E5%9B%9E%E5%AF%BC%E5%90%91%E7%BC%96%E7%A8%8B/1.jpg"></p>
 <ol start="2">
-<li><p>平均互信息的概念</p>
-</li>
-<li><p>信息处理不等式</p>
-</li>
-<li><p>信源编码定理</p>
-</li>
-<li><p>信道编码定理</p>
-</li>
-<li><p>信息量的计算</p>
-</li>
-<li><p>霍夫曼编码的计算</p>
-</li>
-<li><p>准对称信道容量的计算</p>
-</li>
+<li>栈溢出</li>
 </ol>
+<p><img src="../%E8%BF%94%E5%9B%9E%E5%AF%BC%E5%90%91%E7%BC%96%E7%A8%8B/2.jpg"><br><img src="../%E8%BF%94%E5%9B%9E%E5%AF%BC%E5%90%91%E7%BC%96%E7%A8%8B/3.jpg"></p>
+<ol start="3">
+<li>基于栈溢出的典型代码注入攻击</li>
+</ol>
+<ul>
+<li>通过栈溢出，劫持位于栈帧中的函数返回地址</li>
+<li>直接将被劫持的返回地址指向被溢出的栈区</li>
+<li>溢出过程在被指向的位置上写入shellcode</li>
+</ul>
+<ol start="4">
+<li>针对代码注入的防护机制</li>
+</ol>
+<p>** 数据执行保护**</p>
+<ul>
+<li>一些别名：W⊕X，NX-bit</li>
+<li>机制：对内存页面增加一个标识bit，使之要么可改写，要么可执行</li>
+</ul>
+<p><strong>经典代码注入的核心思想</strong></p>
+<ul>
+<li>利用逻辑异常，在程序数据中混入代码。</li>
+<li>劫持控制流，使得指令指针从数据段读取指令。</li>
+<li>所需弱点：读取指令时，CPU无法区分目标内存区域的性质（代码？数据？）。</li>
+</ul>
+<p><strong>针对上述特点，DEP的防御思路</strong><br>引入新的硬件安全属性，支持CPU在执行时区分代码和数据区域。<br><strong>缺点</strong></p>
+<ul>
+<li>既然注入Shellcode无法执行，进程和动态库的代码段怎么也要执行吧，具有可执行属性，那攻击者能否利用进程空间现有的代码段进行攻击，答案是肯定的。</li>
+<li>若不试图执行数据区内容，则不能发现/阻止溢出，也无法防范溢出的其他后果。</li>
+</ul>
+<ol start="5">
+<li>DEP与return-to-libc攻击</li>
+</ol>
+<p><strong>绕过DEP</strong><br>DEP客观存在，注入类攻击如何下手？</p>
+<p>代码重用（code reuse）攻击—-异常数据的注入仍然可以实施。</p>
+<p>既然代码无法直接注入，那么就利用进程空间中已经存在的代码。不管所利用代码原本的用途为何，通过注入的异常数据控制其为攻击者服务，最先出现的此类手段：return-to-libc攻击。</p>
+<p><strong>DEP核心思想</strong></p>
+<p>缓冲区溢出的常用攻击方法是用 shellcode 的地址来覆盖漏洞程序的返回地址，使得漏洞程序去执行存放在栈中 shellcode。</p>
+<p>为了阻止这种类型的攻击，一些操作系统使得系统管理员具有使栈不可执行的能力。这样的话，一旦程序执行存放在栈中的 shellcode 就会崩溃，从而阻止了攻击。</p>
+<p><strong>return-to-libc核心思想</strong></p>
+<p>攻击者采用缓冲区溢出改写返回地址为一个库函数的地址，并且将此库函数执行时的参数也重新写入栈中。</p>
+<p>当函数调用时获取的是攻击者设定好的参数值，此库函数实际上就帮助攻击者执行其恶意行为。</p>
+<p>更复杂的攻击还可以通过 return-into-libc 的调用链（一系列库函数的连续调用）来完成。</p>
+<p><strong>return-to-libc局限性</strong><br>攻击者可用的指令序列只能为应用程序中已存在的函数,所以这种攻击方式的攻击能力有限。</p>
+<p>从函数—-&gt;指令，不再局限于将漏洞程序的控制流跳转到库函数中，而是可以利用程序和库函数中识别并选取的一组指令序列。攻击者将这些指令序列串连起来，形成攻击所需要的 shellcode 来从事后续的攻击行为<br>可行吗？</p>
+<p><strong>绕过DEP新利用点</strong><br><strong>复杂指令集（complex instruction set computing，CISC）</strong><br>指令变长（目的：以最短的代码长度压缩最多的指令内容），CPU串行地读取指令，依据上下文区分操作码/操作数等成分。<br>典型：x86指令构架</p>
+<p><strong>CISC所存在的问题</strong></p>
+<ul>
+<li>代码中一个字节的含义取决于上下文。</li>
+<li>同一数值在单字节/双字节操作码中出现，意义不同。</li>
+<li>同一数值作为指令中的不同元素（如操作码/立即数）时，意义不同。</li>
+<li>原则上，任何一个字节都可能是一条指令的起始。</li>
+</ul>
 
                 
             </div>
@@ -505,8 +555,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="../../../../tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/">
-                                    <span class="chip bg-color">信息论</span>
+                                <a href="../../../../tags/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8/">
+                                    <span class="chip bg-color">软件安全</span>
                                 </a>
                             
                         </div>
@@ -553,19 +603,18 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="../%E8%BF%94%E5%9B%9E%E5%AF%BC%E5%90%91%E7%BC%96%E7%A8%8B/">
+                <a href="../%E6%99%A8%E6%99%A8%E7%9A%84%E5%BF%AB%E4%B9%90%E5%8A%A0%E4%B8%80/">
                     <div class="card-image">
                         
+                        <img src="../../../../medias/chen.JPG" class="responsive-img" alt="晨晨的快乐加一">
                         
-                        <img src="../../../../medias/featureimages/20.jpg" class="responsive-img" alt="返回导向编程">
-                        
-                        <span class="card-title">返回导向编程</span>
+                        <span class="card-title">晨晨的快乐加一</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            这应该是最后一个比较重要的知识点了，返回导向编程，昨天看了轻松哥的网课，有点复杂，还有时间呢。
+                            
                         
                     </div>
                     <div class="publish-info">
@@ -576,8 +625,8 @@
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="../../../../categories/%E5%A4%A7%E4%B8%89%E4%B8%8B%E6%9C%9F%E6%9C%AB%E8%80%83%E8%AF%95/" class="post-category">
-                                    大三下期末考试
+                            <a href="../../../../categories/%E6%99%A8%E6%99%A8%E7%9A%84%E5%91%A8%E8%AE%B0/" class="post-category">
+                                    晨晨的周记
                                 </a>
                             
                             
@@ -587,8 +636,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="../../../../tags/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8/">
-                        <span class="chip bg-color">软件安全</span>
+                    <a href="../../../../tags/%E6%99%A8%E6%99%A8/">
+                        <span class="chip bg-color">晨晨</span>
                     </a>
                     
                 </div>
@@ -602,19 +651,19 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="../%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E6%A8%A1%E7%B3%8A%E6%B5%8B%E8%AF%95/">
+                <a href="../%E4%BF%A1%E6%81%AF%E8%AE%BA%E6%9C%9F%E6%9C%AB/">
                     <div class="card-image">
                         
                         
-                        <img src="../../../../medias/featureimages/23.jpg" class="responsive-img" alt="软件安全模糊测试">
+                        <img src="../../../../medias/featureimages/8.jpg" class="responsive-img" alt="信息论期末">
                         
-                        <span class="card-title">软件安全模糊测试</span>
+                        <span class="card-title">信息论期末</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            模糊测试在上密码学进展的时候杨超老师讲过，有了一点小小的印象，现在来了解多一点吧！
+                            这学期选修了信息论，觉得这门课挺有意思，主要还比较有趣，现在到了期末，虽然平时没怎么上课，但是一些知识还是需要总结的。希望自己能够顾得来。
                         
                     </div>
                     <div class="publish-info">
@@ -636,8 +685,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="../../../../tags/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8/">
-                        <span class="chip bg-color">软件安全</span>
+                    <a href="../../../../tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/">
+                        <span class="chip bg-color">信息论</span>
                     </a>
                     
                 </div>
