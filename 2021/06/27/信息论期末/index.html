@@ -433,14 +433,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-06-27
+                    2021-06-28
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    95
+                    540
                 </div>
                 
 
@@ -474,23 +474,38 @@
 <ol>
 <li>熵的概念</li>
 </ol>
-<p>离散集的平均自信息—-熵<br><img src="../%E4%BF%A1%E6%81%AF%E8%AE%BA%E6%9C%9F%E6%9C%AB/1.jpg"><br><img src="../%E4%BF%A1%E6%81%AF%E8%AE%BA%E6%9C%9F%E6%9C%AB/2.jpg"><br>熵的性质：对称性、非负性、确定性、扩展性。<br><img src="../%E4%BF%A1%E6%81%AF%E8%AE%BA%E6%9C%9F%E6%9C%AB/3.jpg"></p>
+<p>离散集的平均自信息—-熵</p>
+<p>熵是接收的每条消息中包含的信息的平均量，又被称为信息熵、信源熵、平均自信息量。这里，“消息”代表来自分布或数据流中的事件、样本或特征。熵的单位通常为比特，但也用Sh、nat、Hart计量，取决于定义用到对数的底。<br><img src="../%E4%BF%A1%E6%81%AF%E8%AE%BA%E6%9C%9F%E6%9C%AB/1.jpg"><br><img src="../%E4%BF%A1%E6%81%AF%E8%AE%BA%E6%9C%9F%E6%9C%AB/2.jpg"><br><img src="../%E4%BF%A1%E6%81%AF%E8%AE%BA%E6%9C%9F%E6%9C%AB/6.jpg"><br>熵的性质：对称性、非负性、确定性、扩展性。<br><img src="../%E4%BF%A1%E6%81%AF%E8%AE%BA%E6%9C%9F%E6%9C%AB/3.jpg"><br>示例<br><img src="../%E4%BF%A1%E6%81%AF%E8%AE%BA%E6%9C%9F%E6%9C%AB/7.jpg"></p>
 <ol start="2">
-<li><p>平均互信息的概念</p>
-</li>
-<li><p>信息处理不等式</p>
-</li>
-<li><p>信源编码定理</p>
-</li>
-<li><p>信道编码定理</p>
-</li>
-<li><p>信息量的计算</p>
-</li>
-<li><p>霍夫曼编码的计算</p>
-</li>
-<li><p>准对称信道容量的计算</p>
-</li>
+<li>平均互信息的概念</li>
 </ol>
+<p>互信息量<br><img src="..%E3%80%81%E4%BF%A1%E6%81%AF%E8%AE%BA%E6%9C%9F%E6%9C%AB/9.jpg"><br><img src="../%E4%BF%A1%E6%81%AF%E8%AE%BA%E6%9C%9F%E6%9C%AB/8.jpg"><br>定义<br><img src="../%E4%BF%A1%E6%81%AF%E8%AE%BA%E6%9C%9F%E6%9C%AB/4.jpg"><br>性质：非负性、对称性<br><img src="../%E4%BF%A1%E6%81%AF%E8%AE%BA%E6%9C%9F%E6%9C%AB/5.jpg"></p>
+<ol start="3">
+<li>信息处理不等式</li>
+</ol>
+<p><img src="../%E4%BF%A1%E6%81%AF%E8%AE%BA%E6%9C%9F%E6%9C%AB/10.jpg"><br><img src="../%E4%BF%A1%E6%81%AF%E8%AE%BA%E6%9C%9F%E6%9C%AB/11.jpg"><br>对观测数据的任何处理都会带来信息损失。绝对不会使信息增加。处理的越细致，信息的损失越小。但是处理的代价就越高。</p>
+<p>当消息经过多级处理后，随着处理器数目的增多，输入消息与输出消息之间的平均互信息量趋于变小。</p>
+<ol start="4">
+<li>信源编码定理</li>
+</ol>
+<p>在信息论中，香农的信源编码定理确立了数据压缩的限度，以及香农熵的操作意义。</p>
+<p>信源编码定理表明不可能把数据压缩得码率比信源的香农熵还小，又不丢失信息。但是有可能使码率任意接近香农熵，且损失的概率极小。</p>
+<p>码符号的信源编码定理把码字的最小可能期望长度看作输入字的熵和目标编码表的大小的一个函数，给出了此函数的上界和下界。</p>
+<ol start="5">
+<li>信道编码定理</li>
+</ol>
+<p>只要信息传输速率小于信道容量，就存在一类编码，使信息传输的错误概率可以任意小。 </p>
+<p>设R是信息传输的速率，C是离散无记忆信道的信道容量，ε&gt;0是任意小的数，则只要R&lt;C就总存在码字长为N，码字数为M=2NR的分组码使译码的平均差错概率Pe&lt;ε。</p>
+<ol start="6">
+<li>信息量的计算</li>
+</ol>
+<ol start="7">
+<li>霍夫曼编码的计算</li>
+</ol>
+<ol start="8">
+<li>准对称信道容量的计算</li>
+</ol>
+<p><img src="../%E4%BF%A1%E6%81%AF%E8%AE%BA%E6%9C%9F%E6%9C%AB/12.jpg"><br><img src="../%E4%BF%A1%E6%81%AF%E8%AE%BA%E6%9C%9F%E6%9C%AB/13.jpg"></p>
 
                 
             </div>
@@ -788,7 +803,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">29.1k</span>
+                        class="white-color">30.3k</span>
             
             
             
