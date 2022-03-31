@@ -433,21 +433,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-03-30
+                    2022-03-31
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.5k
+                    2.4k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    6 分
+                    11 分
                 </div>
                 
 
@@ -637,7 +637,7 @@ int main()
 <p>无名联合。<br>强制类型转换。</p>
 <p>运算符new和delete<br>删除数组时，使用此方式：</p>
 <p><code>delete []p;</code>//p是指数组的名称即指针变量名</p>
-<pre class="line-numbers language-none"><code class="language-none">#include &lt;iostream&gt;
+<pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#include &lt;iostream&gt;
 using namespace std;
 
 int main()
@@ -652,6 +652,109 @@ int main()
 	return 0;
 &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
+<p>引用<br>建立引用的作用是为变量另起一个名字，变量的引用通常被认为是变量的别名。当声明一个引用时，必须同时用另一个变量的名字来将它初始化。即声明它代表哪一个变量，是哪一个变量的别名，这样对一个引用的所有操作，实际上都是对其所代表的变量的操作，就如同对一个人来说，即使有三四个名字，其实是同一个人，用这三四个人所做的事情，其实就是那一个人所做的事情。</p>
+<pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#include &lt;iostream&gt;
+using namespace std;
+&#x2F;&#x2F;直接利用j变量指示i变量，两者其实是一个地址空间
+int main()
+&#123;
+	int i;
+	int&amp; j &#x3D; i;
+	i &#x3D; 30;
+	cout &lt;&lt; &quot;i&#x3D;&quot; &lt;&lt; i &lt;&lt; &quot; &quot; &lt;&lt; &quot;j&#x3D;&quot; &lt;&lt; j &lt;&lt; endl;
+	j &#x3D; 80;
+	cout &lt;&lt; &quot;i&#x3D;&quot; &lt;&lt; i &lt;&lt; &quot; &quot; &lt;&lt; &quot;j&#x3D;&quot; &lt;&lt; j &lt;&lt; endl;
+	cout &lt;&lt; &quot;变量i的地址：&quot; &lt;&lt; &amp;i &lt;&lt; endl;
+	cout &lt;&lt; &quot;变量j的地址：&quot; &lt;&lt; &amp;j &lt;&lt; endl;
+	return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#include &lt;iostream&gt;
+using namespace std;
+&#x2F;&#x2F;两中方式都挺好（引用和指针）
+int main()
+&#123;
+	int i &#x3D; 15;
+	&#x2F;&#x2F;直接将i的地址赋给iptr
+	int* iptr &#x3D; &amp;i;
+	&#x2F;&#x2F;用rptr引用i（iptr和i表示的是一个空间）
+	int&amp; rptr &#x3D; i;
+	cout &lt;&lt; &quot;i is &quot; &lt;&lt; i &lt;&lt; endl;
+	cout &lt;&lt; &quot;iptr is &quot; &lt;&lt; *iptr &lt;&lt; endl;
+	cout &lt;&lt; &quot;rptr is &quot; &lt;&lt; rptr &lt;&lt; endl;
+	&#x2F;&#x2F;尝试更改一个地址中的值即可
+	i &#x3D; 39;
+	cout &lt;&lt; &quot;i is &quot; &lt;&lt; i &lt;&lt; endl;
+	cout &lt;&lt; &quot;iptr is &quot; &lt;&lt; *iptr &lt;&lt; endl;
+	cout &lt;&lt; &quot;rptr is &quot; &lt;&lt; rptr &lt;&lt; endl;
+	return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>引用作为函数参数<br>下面两种方法得到的效果是一样的，需要熟练掌握。</p>
+<pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#include &lt;iostream&gt;
+using namespace std;
+
+void swap(int* p, int* q);
+&#x2F;&#x2F;这里的p，q是指针类型的整型，即是地址值
+void swap(int* p, int* q)
+&#123;
+	int temp;
+	temp &#x3D; *p;
+	*p &#x3D; *q;
+	*q &#x3D; temp;
+&#125;
+int main()
+&#123;
+	int a &#x3D; 5, b &#x3D; 10;
+	cout &lt;&lt; &quot;a&#x3D;&quot; &lt;&lt; a &lt;&lt; &quot; &quot; &lt;&lt; &quot;b&#x3D;&quot; &lt;&lt; b &lt;&lt; endl;
+	swap(&amp;a, &amp;b);
+	&#x2F;&#x2F;交换
+	cout &lt;&lt; &quot;a&#x3D;&quot; &lt;&lt; a &lt;&lt; &quot; &quot; &lt;&lt; &quot;b&#x3D;&quot; &lt;&lt; b &lt;&lt; endl;
+	return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">&#x2F;&#x2F;实际上这种方式比较常用，安全性较高并且，比较容易编写
+#include &lt;iostream&gt;
+using namespace std;
+
+void swap(int&amp; p, int&amp; q);
+&#x2F;&#x2F;这里的p，q都是整型变量
+void swap(int&amp; p, int&amp; q)
+&#123;
+	int temp &#x3D; p;
+	p &#x3D; q;
+	q &#x3D; temp;
+&#125;
+int main()
+&#123;
+	int a &#x3D; 5, b &#x3D; 10;
+	cout &lt;&lt; &quot;a&#x3D;&quot; &lt;&lt; a &lt;&lt; &quot; &quot; &lt;&lt; &quot;b&#x3D;&quot; &lt;&lt; b &lt;&lt; endl;
+	swap(a, b);
+	&#x2F;&#x2F;交换
+	cout &lt;&lt; &quot;a&#x3D;&quot; &lt;&lt; a &lt;&lt; &quot; &quot; &lt;&lt; &quot;b&#x3D;&quot; &lt;&lt; b &lt;&lt; endl;
+	return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>使用引用返回函数值。<br>这个感觉有点难想，到底这个函数返回的是一个整型。</p>
+<pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#include &lt;iostream&gt;
+using namespace std;
+
+int a[] &#x3D; &#123; 1,3,5,7,9 &#125;;
+int&amp; index(int i);
+
+int&amp; index(int i)
+&#123;
+	return a[i];
+&#125;
+
+int main()
+&#123;
+	index(2) &#x3D; 25;
+	cout &lt;&lt; index(2) &lt;&lt; endl;
+	return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>虽然第一章的学习结束了，但是还有很多没搞懂的地方，之后学习应该会花费更多时间去学习！</p>
 
                 
             </div>
@@ -710,18 +813,17 @@ int main()
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="">
+                <a href="../../31/C-%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A12/">
                     <div class="card-image">
                         
                         
-                        <img src="../../../../medias/featureimages/15.jpg" class="responsive-img" alt="C++程序设计1">
+                        <img src="../../../../medias/featureimages/16.jpg" class="responsive-img" alt="C++程序设计2">
                         
-                        <span class="card-title">C++程序设计1</span>
+                        <span class="card-title">C++程序设计2</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -731,9 +833,9 @@ int main()
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-30
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-03-31
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -746,7 +848,6 @@ int main()
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -951,7 +1052,7 @@ int main()
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">49.4k</span>
+                        class="white-color">50.5k</span>
             
             
             
