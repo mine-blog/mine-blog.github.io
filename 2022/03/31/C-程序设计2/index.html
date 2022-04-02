@@ -433,21 +433,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-04-01
+                    2022-04-02
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.7k
+                    3.9k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    11 分
+                    17 分
                 </div>
                 
 
@@ -844,7 +844,187 @@ int main()
 &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>构造函数的名字必须要与类名相同，否则编译程序将把它当作一般的成员函数来处理。构造函数没有返回值，在定义构造函数时，是不能说明它的类型的，甚至说明为void类型也不行。构造函数的函数体可以写在类体内，也可写在类体外。<br>构造函数的主要作用是用来对对象进行初始化，用户根据初始化的要求设计函数体和函数参数。构造函数一般声明为公有成员，但它不需要被显式调用，他是定义对象的同时被自动调用的，而且只执行一次。同时构造函数可以不带参数。</p>
-<p>用成员初始化列表对数据成员初始化。</p>
+<p>用成员初始化列表对数据成员初始化。这种方法不在函数体内用赋值语句对数据成员初始化，而是在函数首部实现的。即原来的函数首部的末尾加一个冒号，然后列出成员初始化列表。成员初始化列表写法方便，简练，尤其当需要初始化的数据成员较多时更显优越性。</p>
+<pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">&#x2F;&#x2F;这个初始化好奇怪呀，没有搞懂为什么是这样
+#include &lt;iostream&gt;
+#include &lt;cmath&gt;
+using namespace std;
+
+class A
+&#123;
+public:
+	A(int x1) :x(x1), rx(x), pi(3.14)&#x2F;&#x2F;用成员初始化列表对引用类型的数据成员进行初始化
+	&#123;
+
+	&#125;
+	void print()
+	&#123;
+		cout &lt;&lt; &quot;x&#x3D;&quot; &lt;&lt; x &lt;&lt; &quot; rx&#x3D;&quot; &lt;&lt; rx &lt;&lt; &quot; pi&#x3D;&quot; &lt;&lt; pi &lt;&lt; endl;
+	&#125;
+private:
+	int x;
+	int&amp; rx;&#x2F;&#x2F;整型变量的引用
+	const double pi;
+&#125;;
+int main()
+&#123;
+	A a(10);
+	a.print();
+	return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>数据成员是按照它们在类中声明的顺序进行初始化的，与他们在成员初始化列表中对列出的顺序无关。</p>
+<pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#include &lt;iostream&gt;
+#include &lt;cmath&gt;
+using namespace std;
+
+class D
+&#123;
+public:
+	D(int i) :mem2(i), mem1(mem2 + 1)
+	&#123;
+		cout &lt;&lt; &quot;mem1 is &quot; &lt;&lt; mem1 &lt;&lt; endl;
+		cout &lt;&lt; &quot;mem2 is &quot; &lt;&lt; mem2 &lt;&lt; endl;
+	&#125;
+private:
+	int mem2, mem1;&#x2F;&#x2F;声明的顺序
+	&#x2F;&#x2F;int mem1,mem2;  &#x2F;&#x2F;这时候的运行结果不同
+&#125;;
+int main()
+&#123;
+	D d(15);&#x2F;&#x2F;输出16，15
+	return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>构造函数的重载。</p>
+<pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#include &lt;iostream&gt;
+#include &lt;cmath&gt;
+using namespace std;
+
+class Date
+&#123;
+public:&#x2F;&#x2F;构造的内联函数，在简单函数中可以使用
+	inline Date();
+	inline Date(int y, int m, int d);
+	inline void showDate();
+private:
+	int year;
+	int month;
+	int day;
+&#125;;
+
+inline Date::Date()
+&#123;
+	year &#x3D; 2022;
+	month &#x3D; 4;
+	day &#x3D; 2;
+&#125;
+inline Date::Date(int y, int m, int d)
+&#123;
+	year &#x3D; y;
+	month &#x3D; m;
+	day &#x3D; d;
+&#125;
+
+inline void Date::showDate()
+&#123;
+	cout &lt;&lt; &quot;今天是：&quot; &lt;&lt; year &lt;&lt; &quot;年&quot; &lt;&lt; month &lt;&lt; &quot;月&quot; &lt;&lt; day &lt;&lt; &quot;日&quot; &lt;&lt; endl;
+&#125;
+int main()
+&#123;
+	Date date,date1(2021,3,12);
+	date.showDate();
+	date1.showDate();
+	return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>下面也是一个重载的实例。</p>
+<pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#include &lt;iostream&gt;
+#include &lt;cmath&gt;
+using namespace std;
+&#x2F;&#x2F;class类
+class timer
+&#123;
+public:
+	timer()
+	&#123;
+		seconds &#x3D; 0;
+	&#125;
+	timer(char* t)
+	&#123;
+		seconds &#x3D; atoi(t);
+	&#125;
+	timer(int t)
+	&#123;
+		seconds &#x3D; t;
+	&#125;
+	timer(int min, int sec)
+	&#123;
+		seconds &#x3D; min * 60 + sec;
+	&#125;
+	int gettime()
+	&#123;
+		return seconds;
+	&#125;
+private:
+	int seconds;
+&#125;;
+int main()
+&#123;
+	int t;
+	char a[] &#x3D; &quot;123&quot;;
+	timer time(a);
+	t&#x3D;time.gettime();
+	cout &lt;&lt; &quot;时间是：&quot; &lt;&lt; t &lt;&lt; endl;
+	return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>带默认参数的构造函数。如果构造函数在类的声明外定义，那么默认参数就应该在类内声明构造函数原型时指定，而不能在类外构造函数定义时指定。如果构造函数的全部参数都制定了默认值，则在定义对象时可以指定一个或几个实参，也可以不给出实参，这时的构造函数也属于默认构造函数。在一个类中定义了全部时默认参数的构造函数后，不能再定义重新构造函数。</p>
+<p>析构函数也是一种特殊的成员函数，它执行与构造函数相反的操作，通常用于执行一些清理任务，如释放分配给对象的内存空间等。<br>析构函数的特点：</p>
+<ul>
+<li>析构函数名与类名相同，但它签名必须加一个波浪号。</li>
+<li>析构函数不返回任何值。在定义析构函数时，是不能说明它的类型的，甚至说明为void型也不行。</li>
+<li>析构函数没有参数，因此不能够重载。</li>
+<li>撤销对象时，编译系统会自动地调用析构函数。</li>
+</ul>
+<pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#include &lt;iostream&gt;
+#include &lt;cmath&gt;
+using namespace std;
+&#x2F;&#x2F;class类
+class Complex
+&#123;
+private:
+	double real, imag;
+public:
+	Complex(double r &#x3D; 0.0, double i &#x3D; 0.0);
+	~Complex();
+	double absComplex();
+&#125;;
+Complex::Complex(double r, double i)
+&#123;
+	real &#x3D; r;
+	imag &#x3D; i;
+	cout &lt;&lt; &quot;调用构造函数。&quot; &lt;&lt; endl;
+&#125;
+&#x2F;&#x2F;系统默认定义过
+Complex::~Complex()
+&#123;
+	cout &lt;&lt; &quot;调用析构函数。&quot; &lt;&lt; endl;
+&#125;
+double Complex::absComplex()
+&#123;
+	double t;
+	t &#x3D; real * real + imag * imag;
+	return sqrt(t);
+&#125;
+int main()
+&#123;
+	Complex c(3,4);
+	cout &lt;&lt; &quot;长度是：&quot; &lt;&lt; c.absComplex() &lt;&lt; endl;
+	return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>每个类必须有一个析构函数，若没有显式地定义一个析构函数，编译系统会自动生成一个默认析构函数。除了在主函数结束或调用exit函数后，系统会自动调用析构函数，以下两种系统也会调用析构函数。<br>一、如果一个对象被定义在一个函数体内，则当这个函数被调用结束时，该对象将被释放，调用析构函数。<br>二、若一个对象使用new运算符动态建立，在使用delete运算符释放它时，delete会自动调用析构函数。</p>
 
                 
             </div>
@@ -1144,7 +1324,7 @@ int main()
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">52.9k</span>
+                        class="white-color">54.2k</span>
             
             
             
